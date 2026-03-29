@@ -1,0 +1,94 @@
+name: ORL-AI Verify
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify frozen demo hash
+        run: |
+          expected_demo=$(awk '
+            $0 == "demo/orl_ai_demo_base_v4_1.py" { getline; getline; print; exit }
+          ' VERIFY/FREEZE_DEMO_SHA256.txt | tr -d "\r")
+
+          actual_demo=$(sha256sum demo/orl_ai_demo_base_v4_1.py | awk '{print $1}')
+
+          [ "$actual_demo" = "$expected_demo" ] || (echo "demo hash mismatch" && exit 1)
+
+      - name: Run ORL-AI demo and generate output
+        run: |
+          python demo/orl_ai_demo_base_v4_1.py --write-output --output outputs/orl_ai_result_v4_1.json
+
+      - name: Verify output content
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path("outputs/orl_ai_result_v4_1.json")
+          data = json.loads(p.read_text(encoding="utf-8"))
+
+          assert data["core_identity"]["axiom_1"] == "correctness != training + data_order + synchronization"
+          assert data["core_identity"]["axiom_2"] == "decision = resolve(normalize(structure))"
+
+          assert data["reference_merge"]["state"] == "RESOLVED"
+          assert data["reference_merge"]["decision"] == "Action_Isolate"
+
+          assert data["replay_merge"]["state"] == "RESOLVED"
+          assert data["replay_merge"]["decision"] == "Action_Isolate"
+          assert data["reference_merge"]["certificate"] == data["replay_merge"]["certificate"]
+
+          assert data["conflict_merge"]["state"] == "ABSTAIN"
+          assert data["conflict_merge"]["governance"]["governance_status"] == "REJECTED_CONFLICT"
+
+          assert data["ambiguity_merge"]["state"] == "ABSTAIN"
+          assert data["ambiguity_merge"]["governance"]["governance_status"] == "REJECTED_AMBIGUITY"
+
+          assert data["five_node_merge"]["state"] == "RESOLVED"
+          assert data["five_node_merge"]["decision"] == "Action_Approve"
+
+          assert data["five_node_replay_merge"]["state"] == "RESOLVED"
+          assert data["five_node_replay_merge"]["decision"] == "Action_Approve"
+          assert data["five_node_merge"]["certificate"] == data["five_node_replay_merge"]["certificate"]
+
+          assert data["permutation_check"]["checked"] == 6
+          assert data["permutation_check"]["independent"] is True
+          assert data["permutation_check"]["state"] == "RESOLVED"
+          assert data["permutation_check"]["decision"] == "Action_Isolate"
+
+          assert data["final_checks"]["converged_decision"] is True
+          assert data["final_checks"]["matching_certificate"] is True
+          assert data["final_checks"]["five_node_converged_decision"] is True
+          assert data["final_checks"]["five_node_matching_certificate"] is True
+          assert data["final_checks"]["conflict_governance_stable"] is True
+          assert data["final_checks"]["conflict_capsule_stable"] is True
+          assert data["final_checks"]["dual_approve_overlap_resolved"] is True
+          assert data["final_checks"]["dual_approve_overlap_decision"] is True
+
+          print("ORL-AI output content verified.")
+          PY
+
+      - name: Verify frozen output hash
+        run: |
+          expected_output=$(awk '
+            $0 == "outputs/orl_ai_result_v4_1.json" { getline; getline; print; exit }
+          ' VERIFY/FREEZE_DEMO_SHA256.txt | tr -d "\r")
+
+          actual_output=$(sha256sum outputs/orl_ai_result_v4_1.json | awk '{print $1}')
+
+          [ "$actual_output" = "$expected_output" ] || (echo "output hash mismatch" && exit 1)
