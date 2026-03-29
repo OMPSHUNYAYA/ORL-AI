@@ -1,0 +1,722 @@
+{
+  "core_identity": {
+    "axiom_1": "correctness != training + data_order + synchronization",
+    "axiom_2": "decision = resolve(normalize(structure))"
+  },
+  "reference_merge": {
+    "structure": [
+      "cough",
+      "fatigue",
+      "fever"
+    ],
+    "state": "RESOLVED",
+    "decision": "Action_Isolate",
+    "matched_decisions": [
+      "Action_Isolate"
+    ],
+    "certificate": "7f763b91b0ed88ecae869feba2d872ee7bcfcc6afdd666eb35bf989ca10a89fb",
+    "governance": {
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever"
+      ],
+      "sufficient_structure": true,
+      "conflict_detected": false,
+      "ambiguity_detected": false,
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Isolate"
+    },
+    "resolution_capsule": {
+      "case_id": "CASE_3NODE_REFERENCE",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Isolate",
+      "matched_decisions": [
+        "Action_Isolate"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Isolate",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "7f763b91b0ed88ecae869feba2d872ee7bcfcc6afdd666eb35bf989ca10a89fb",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    }
+  },
+  "replay_merge": {
+    "structure": [
+      "cough",
+      "fatigue",
+      "fever"
+    ],
+    "state": "RESOLVED",
+    "decision": "Action_Isolate",
+    "matched_decisions": [
+      "Action_Isolate"
+    ],
+    "certificate": "7f763b91b0ed88ecae869feba2d872ee7bcfcc6afdd666eb35bf989ca10a89fb",
+    "governance": {
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever"
+      ],
+      "sufficient_structure": true,
+      "conflict_detected": false,
+      "ambiguity_detected": false,
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Isolate"
+    },
+    "resolution_capsule": {
+      "case_id": "CASE_3NODE_REPLAY",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Isolate",
+      "matched_decisions": [
+        "Action_Isolate"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Isolate",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "7f763b91b0ed88ecae869feba2d872ee7bcfcc6afdd666eb35bf989ca10a89fb",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    }
+  },
+  "conflict_merge": {
+    "structure": [
+      "cough",
+      "fatigue",
+      "fever",
+      "no_fatigue"
+    ],
+    "state": "ABSTAIN",
+    "decision": null,
+    "matched_decisions": [],
+    "certificate": "81f7404130a2a7a44d4528186d47bef8f6711a7f5a4c7bf27a47e390082e70cf",
+    "governance": {
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever",
+        "no_fatigue"
+      ],
+      "sufficient_structure": false,
+      "conflict_detected": true,
+      "ambiguity_detected": false,
+      "governance_status": "REJECTED_CONFLICT",
+      "resolution_basis": "conflicting structure detected"
+    },
+    "resolution_capsule": {
+      "case_id": "CASE_CONFLICT",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever",
+        "no_fatigue"
+      ],
+      "state": "ABSTAIN",
+      "decision": null,
+      "matched_decisions": [],
+      "governance_status": "REJECTED_CONFLICT",
+      "resolution_basis": "conflicting structure detected",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "81f7404130a2a7a44d4528186d47bef8f6711a7f5a4c7bf27a47e390082e70cf",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    }
+  },
+  "ambiguity_merge": {
+    "structure": [
+      "cough",
+      "fatigue",
+      "fever",
+      "travel_history"
+    ],
+    "state": "ABSTAIN",
+    "decision": null,
+    "matched_decisions": [
+      "Action_Isolate",
+      "Action_Monitor"
+    ],
+    "certificate": "45394162f33a9650ca8a456d8969296b5e68ece6ec64b7c2690af787517e3d8b",
+    "governance": {
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever",
+        "travel_history"
+      ],
+      "sufficient_structure": false,
+      "conflict_detected": false,
+      "ambiguity_detected": true,
+      "governance_status": "REJECTED_AMBIGUITY",
+      "resolution_basis": "multiple incompatible decisions detected"
+    },
+    "resolution_capsule": {
+      "case_id": "CASE_AMBIGUITY",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever",
+        "travel_history"
+      ],
+      "state": "ABSTAIN",
+      "decision": null,
+      "matched_decisions": [
+        "Action_Isolate",
+        "Action_Monitor"
+      ],
+      "governance_status": "REJECTED_AMBIGUITY",
+      "resolution_basis": "multiple incompatible decisions detected",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "45394162f33a9650ca8a456d8969296b5e68ece6ec64b7c2690af787517e3d8b",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    }
+  },
+  "five_node_merge": {
+    "structure": [
+      "alert",
+      "stable_metrics",
+      "verified_source"
+    ],
+    "state": "RESOLVED",
+    "decision": "Action_Approve",
+    "matched_decisions": [
+      "Action_Approve"
+    ],
+    "certificate": "eaa36a8427d43a6cf0e89e0d38e7ed744c4246637173bc31a6a733d7bbdeb0be",
+    "governance": {
+      "normalized_structure": [
+        "alert",
+        "stable_metrics",
+        "verified_source"
+      ],
+      "sufficient_structure": true,
+      "conflict_detected": false,
+      "ambiguity_detected": false,
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Approve"
+    },
+    "resolution_capsule": {
+      "case_id": "CASE_5NODE",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "alert",
+        "stable_metrics",
+        "verified_source"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Approve",
+      "matched_decisions": [
+        "Action_Approve"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Approve",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "eaa36a8427d43a6cf0e89e0d38e7ed744c4246637173bc31a6a733d7bbdeb0be",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    }
+  },
+  "five_node_replay_merge": {
+    "structure": [
+      "alert",
+      "stable_metrics",
+      "verified_source"
+    ],
+    "state": "RESOLVED",
+    "decision": "Action_Approve",
+    "matched_decisions": [
+      "Action_Approve"
+    ],
+    "certificate": "eaa36a8427d43a6cf0e89e0d38e7ed744c4246637173bc31a6a733d7bbdeb0be",
+    "governance": {
+      "normalized_structure": [
+        "alert",
+        "stable_metrics",
+        "verified_source"
+      ],
+      "sufficient_structure": true,
+      "conflict_detected": false,
+      "ambiguity_detected": false,
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Approve"
+    },
+    "resolution_capsule": {
+      "case_id": "CASE_5NODE_REPLAY",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "alert",
+        "stable_metrics",
+        "verified_source"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Approve",
+      "matched_decisions": [
+        "Action_Approve"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Approve",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "eaa36a8427d43a6cf0e89e0d38e7ed744c4246637173bc31a6a733d7bbdeb0be",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    }
+  },
+  "domain_portability": {
+    "approve_path": {
+      "structure": [
+        "low_risk",
+        "stable_metrics",
+        "verified_source"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Approve",
+      "matched_decisions": [
+        "Action_Approve"
+      ],
+      "certificate": "3b05a4c5e2726b43cd1a41197decd753a61d10674c8cdfa7e7fa84e332ed9bb4",
+      "governance": {
+        "normalized_structure": [
+          "low_risk",
+          "stable_metrics",
+          "verified_source"
+        ],
+        "sufficient_structure": true,
+        "conflict_detected": false,
+        "ambiguity_detected": false,
+        "governance_status": "ACCEPTED_UNIQUE_MATCH",
+        "resolution_basis": "unique structural match -> Action_Approve"
+      },
+      "resolution_capsule": {
+        "case_id": "CASE_APPROVE_DOMAIN",
+        "proof_class": "STRUCTURAL_DECISION_PROOF",
+        "normalized_structure": [
+          "low_risk",
+          "stable_metrics",
+          "verified_source"
+        ],
+        "state": "RESOLVED",
+        "decision": "Action_Approve",
+        "matched_decisions": [
+          "Action_Approve"
+        ],
+        "governance_status": "ACCEPTED_UNIQUE_MATCH",
+        "resolution_basis": "unique structural match -> Action_Approve",
+        "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+        "certificate": "3b05a4c5e2726b43cd1a41197decd753a61d10674c8cdfa7e7fa84e332ed9bb4",
+        "determinism_statement": "same normalized structure -> same decision -> same certificate"
+      }
+    },
+    "escalate_path": {
+      "structure": [
+        "alert",
+        "critical_signal",
+        "verified_source"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Escalate",
+      "matched_decisions": [
+        "Action_Escalate"
+      ],
+      "certificate": "d2d82cb52e4c82f8620e14f08b0982877e892d28f0c7202217220c8ac05b44e8",
+      "governance": {
+        "normalized_structure": [
+          "alert",
+          "critical_signal",
+          "verified_source"
+        ],
+        "sufficient_structure": true,
+        "conflict_detected": false,
+        "ambiguity_detected": false,
+        "governance_status": "ACCEPTED_UNIQUE_MATCH",
+        "resolution_basis": "unique structural match -> Action_Escalate"
+      },
+      "resolution_capsule": {
+        "case_id": "CASE_ESCALATE_DOMAIN",
+        "proof_class": "STRUCTURAL_DECISION_PROOF",
+        "normalized_structure": [
+          "alert",
+          "critical_signal",
+          "verified_source"
+        ],
+        "state": "RESOLVED",
+        "decision": "Action_Escalate",
+        "matched_decisions": [
+          "Action_Escalate"
+        ],
+        "governance_status": "ACCEPTED_UNIQUE_MATCH",
+        "resolution_basis": "unique structural match -> Action_Escalate",
+        "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+        "certificate": "d2d82cb52e4c82f8620e14f08b0982877e892d28f0c7202217220c8ac05b44e8",
+        "determinism_statement": "same normalized structure -> same decision -> same certificate"
+      }
+    },
+    "dual_approve_overlap": {
+      "structure": [
+        "alert",
+        "low_risk",
+        "stable_metrics",
+        "verified_source"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Approve",
+      "matched_decisions": [
+        "Action_Approve"
+      ],
+      "certificate": "50b5996a28f3c4211d3f8d0b02e48f85889518f0104c674bf6d3144416ff344c",
+      "governance": {
+        "normalized_structure": [
+          "alert",
+          "low_risk",
+          "stable_metrics",
+          "verified_source"
+        ],
+        "sufficient_structure": true,
+        "conflict_detected": false,
+        "ambiguity_detected": false,
+        "governance_status": "ACCEPTED_UNIQUE_MATCH",
+        "resolution_basis": "unique structural match -> Action_Approve"
+      },
+      "resolution_capsule": {
+        "case_id": "CASE_DUAL_APPROVE_OVERLAP",
+        "proof_class": "STRUCTURAL_DECISION_PROOF",
+        "normalized_structure": [
+          "alert",
+          "low_risk",
+          "stable_metrics",
+          "verified_source"
+        ],
+        "state": "RESOLVED",
+        "decision": "Action_Approve",
+        "matched_decisions": [
+          "Action_Approve"
+        ],
+        "governance_status": "ACCEPTED_UNIQUE_MATCH",
+        "resolution_basis": "unique structural match -> Action_Approve",
+        "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+        "certificate": "50b5996a28f3c4211d3f8d0b02e48f85889518f0104c674bf6d3144416ff344c",
+        "determinism_statement": "same normalized structure -> same decision -> same certificate"
+      }
+    }
+  },
+  "governance_stability": {
+    "conflict_merge": {
+      "structure": [
+        "cough",
+        "fatigue",
+        "fever",
+        "no_fatigue"
+      ],
+      "state": "ABSTAIN",
+      "decision": null,
+      "matched_decisions": [],
+      "certificate": "81f7404130a2a7a44d4528186d47bef8f6711a7f5a4c7bf27a47e390082e70cf",
+      "governance": {
+        "normalized_structure": [
+          "cough",
+          "fatigue",
+          "fever",
+          "no_fatigue"
+        ],
+        "sufficient_structure": false,
+        "conflict_detected": true,
+        "ambiguity_detected": false,
+        "governance_status": "REJECTED_CONFLICT",
+        "resolution_basis": "conflicting structure detected"
+      },
+      "resolution_capsule": {
+        "case_id": "CASE_CONFLICT",
+        "proof_class": "STRUCTURAL_DECISION_PROOF",
+        "normalized_structure": [
+          "cough",
+          "fatigue",
+          "fever",
+          "no_fatigue"
+        ],
+        "state": "ABSTAIN",
+        "decision": null,
+        "matched_decisions": [],
+        "governance_status": "REJECTED_CONFLICT",
+        "resolution_basis": "conflicting structure detected",
+        "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+        "certificate": "81f7404130a2a7a44d4528186d47bef8f6711a7f5a4c7bf27a47e390082e70cf",
+        "determinism_statement": "same normalized structure -> same decision -> same certificate"
+      }
+    },
+    "conflict_replay_merge": {
+      "structure": [
+        "cough",
+        "fatigue",
+        "fever",
+        "no_fatigue"
+      ],
+      "state": "ABSTAIN",
+      "decision": null,
+      "matched_decisions": [],
+      "certificate": "81f7404130a2a7a44d4528186d47bef8f6711a7f5a4c7bf27a47e390082e70cf",
+      "governance": {
+        "normalized_structure": [
+          "cough",
+          "fatigue",
+          "fever",
+          "no_fatigue"
+        ],
+        "sufficient_structure": false,
+        "conflict_detected": true,
+        "ambiguity_detected": false,
+        "governance_status": "REJECTED_CONFLICT",
+        "resolution_basis": "conflicting structure detected"
+      },
+      "resolution_capsule": {
+        "case_id": "CASE_CONFLICT_REPLAY",
+        "proof_class": "STRUCTURAL_DECISION_PROOF",
+        "normalized_structure": [
+          "cough",
+          "fatigue",
+          "fever",
+          "no_fatigue"
+        ],
+        "state": "ABSTAIN",
+        "decision": null,
+        "matched_decisions": [],
+        "governance_status": "REJECTED_CONFLICT",
+        "resolution_basis": "conflicting structure detected",
+        "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+        "certificate": "81f7404130a2a7a44d4528186d47bef8f6711a7f5a4c7bf27a47e390082e70cf",
+        "determinism_statement": "same normalized structure -> same decision -> same certificate"
+      }
+    }
+  },
+  "resolution_capsules": [
+    {
+      "case_id": "CASE_3NODE_REFERENCE",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Isolate",
+      "matched_decisions": [
+        "Action_Isolate"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Isolate",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "7f763b91b0ed88ecae869feba2d872ee7bcfcc6afdd666eb35bf989ca10a89fb",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    },
+    {
+      "case_id": "CASE_3NODE_REPLAY",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Isolate",
+      "matched_decisions": [
+        "Action_Isolate"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Isolate",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "7f763b91b0ed88ecae869feba2d872ee7bcfcc6afdd666eb35bf989ca10a89fb",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    },
+    {
+      "case_id": "CASE_CONFLICT",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever",
+        "no_fatigue"
+      ],
+      "state": "ABSTAIN",
+      "decision": null,
+      "matched_decisions": [],
+      "governance_status": "REJECTED_CONFLICT",
+      "resolution_basis": "conflicting structure detected",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "81f7404130a2a7a44d4528186d47bef8f6711a7f5a4c7bf27a47e390082e70cf",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    },
+    {
+      "case_id": "CASE_AMBIGUITY",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever",
+        "travel_history"
+      ],
+      "state": "ABSTAIN",
+      "decision": null,
+      "matched_decisions": [
+        "Action_Isolate",
+        "Action_Monitor"
+      ],
+      "governance_status": "REJECTED_AMBIGUITY",
+      "resolution_basis": "multiple incompatible decisions detected",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "45394162f33a9650ca8a456d8969296b5e68ece6ec64b7c2690af787517e3d8b",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    },
+    {
+      "case_id": "CASE_5NODE",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "alert",
+        "stable_metrics",
+        "verified_source"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Approve",
+      "matched_decisions": [
+        "Action_Approve"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Approve",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "eaa36a8427d43a6cf0e89e0d38e7ed744c4246637173bc31a6a733d7bbdeb0be",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    },
+    {
+      "case_id": "CASE_5NODE_REPLAY",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "alert",
+        "stable_metrics",
+        "verified_source"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Approve",
+      "matched_decisions": [
+        "Action_Approve"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Approve",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "eaa36a8427d43a6cf0e89e0d38e7ed744c4246637173bc31a6a733d7bbdeb0be",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    },
+    {
+      "case_id": "CASE_APPROVE_DOMAIN",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "low_risk",
+        "stable_metrics",
+        "verified_source"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Approve",
+      "matched_decisions": [
+        "Action_Approve"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Approve",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "3b05a4c5e2726b43cd1a41197decd753a61d10674c8cdfa7e7fa84e332ed9bb4",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    },
+    {
+      "case_id": "CASE_ESCALATE_DOMAIN",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "alert",
+        "critical_signal",
+        "verified_source"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Escalate",
+      "matched_decisions": [
+        "Action_Escalate"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Escalate",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "d2d82cb52e4c82f8620e14f08b0982877e892d28f0c7202217220c8ac05b44e8",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    },
+    {
+      "case_id": "CASE_DUAL_APPROVE_OVERLAP",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "alert",
+        "low_risk",
+        "stable_metrics",
+        "verified_source"
+      ],
+      "state": "RESOLVED",
+      "decision": "Action_Approve",
+      "matched_decisions": [
+        "Action_Approve"
+      ],
+      "governance_status": "ACCEPTED_UNIQUE_MATCH",
+      "resolution_basis": "unique structural match -> Action_Approve",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "50b5996a28f3c4211d3f8d0b02e48f85889518f0104c674bf6d3144416ff344c",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    },
+    {
+      "case_id": "CASE_CONFLICT_REPLAY",
+      "proof_class": "STRUCTURAL_DECISION_PROOF",
+      "normalized_structure": [
+        "cough",
+        "fatigue",
+        "fever",
+        "no_fatigue"
+      ],
+      "state": "ABSTAIN",
+      "decision": null,
+      "matched_decisions": [],
+      "governance_status": "REJECTED_CONFLICT",
+      "resolution_basis": "conflicting structure detected",
+      "decision_acceptance_rule": "normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+      "certificate": "81f7404130a2a7a44d4528186d47bef8f6711a7f5a4c7bf27a47e390082e70cf",
+      "determinism_statement": "same normalized structure -> same decision -> same certificate"
+    }
+  ],
+  "permutation_check": {
+    "checked": 6,
+    "independent": true,
+    "state": "RESOLVED",
+    "decision": "Action_Isolate",
+    "certificate": "7f763b91b0ed88ecae869feba2d872ee7bcfcc6afdd666eb35bf989ca10a89fb"
+  },
+  "final_checks": {
+    "converged_decision": true,
+    "matching_certificate": true,
+    "five_node_converged_decision": true,
+    "five_node_matching_certificate": true,
+    "conflict_governance_stable": true,
+    "conflict_capsule_stable": true,
+    "dual_approve_overlap_resolved": true,
+    "dual_approve_overlap_decision": true
+  },
+  "theorem_block": [
+    "same normalized structure -> same decision",
+    "same normalized structure -> same certificate",
+    "missing structure -> INCOMPLETE",
+    "conflicting structure -> ABSTAIN",
+    "multiple incompatible decisions -> ABSTAIN",
+    "multiple matching rules with one unique decision -> RESOLVED",
+    "same structural law -> portable across bounded domains",
+    "governed structure -> auditable decision",
+    "resolution is a deterministic function of normalized structure",
+    "decision acceptance requires normalize(structure) satisfies: sufficient_structure AND conflict_free AND uniquely_valid",
+    "each resolved structure produces a verifiable resolution capsule"
+  ]
+}
