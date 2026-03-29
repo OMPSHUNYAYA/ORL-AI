@@ -1,0 +1,242 @@
+⭐ ORL-AI — Verification Guide
+
+Orderless Intelligence — Structural Decision System
+Deterministic • Order-Free • Time-Independent Decision Resolution
+
+---
+
+## ⚡ Purpose
+
+This document provides step-by-step verification instructions to confirm that the ORL-AI reference implementation:
+
+• produces deterministic decisions
+• is independent of time, order, and synchronization
+• converges structurally across independent nodes
+• generates reproducible outputs
+
+---
+
+## ⚡ Step 1 — Run the Reference Demo
+
+Open terminal in the project root.
+
+Run:
+
+```
+python demo/orl_ai_demo_base_v4_1.py
+```
+
+---
+
+## ⚡ Step 2 — Observe Structural Behavior
+
+You should observe:
+
+• multiple independent nodes (A, B, C, etc.)
+• each node starts with partial signals
+• no timestamps
+• no ordering assumptions
+• no synchronization between nodes
+
+Initial state:
+
+• Node-A → INCOMPLETE
+• Node-B → INCOMPLETE
+• Node-C → INCOMPLETE
+
+After structural merge:
+
+• Final State → RESOLVED
+• Final Decision → Action_Isolate
+
+---
+
+## ⚡ Step 3 — Verify Core Structural Invariants
+
+Confirm the following:
+
+• same structure → same decision
+• decision does not depend on input order
+• decision does not depend on time
+• decision does not depend on synchronization
+
+Expected:
+
+• Order independence → TRUE
+• Time independence → TRUE
+• Sync independence → TRUE
+
+---
+
+## ⚡ Step 4 — Replay / Determinism Check
+
+Run the demo multiple times:
+
+```
+python demo/orl_ai_demo_base_v4_1.py
+```
+
+Confirm:
+
+• identical final decision across runs
+• identical structural behavior
+• identical convergence outcome
+
+Expected:
+
+• Deterministic behavior → TRUE
+
+Optional:
+
+Run multiple permutations (if supported)
+
+Confirm:
+
+resolve(normalize(P(S))) = resolve(normalize(S))
+
+---
+
+## ⚡ Step 5 — Generate Verifiable Output
+
+Run:
+
+```
+python demo/orl_ai_demo_base_v4_1.py --write-output --output outputs/orl_ai_result_v4_1.json
+```
+
+---
+
+## ⚡ Step 6 — Validate Output Behavior
+
+Confirm:
+
+• output JSON is generated:
+`outputs/orl_ai_result_v4_1.json`
+• final decision = Action_Isolate
+• final state = RESOLVED
+
+Also verify:
+
+• Node states begin INCOMPLETE
+• merge produces RESOLVED
+• no probabilistic variation
+
+---
+
+## ⚡ Step 7 — Conflict Safety Check
+
+If conflicting signals are present (e.g., fatigue and no_fatigue):
+
+Expected:
+
+• State → ABSTAIN
+• no forced decision
+• conflict explicitly detected
+
+---
+
+## ⚡ Step 8 — Ambiguity Safety Check
+
+If structure supports multiple incompatible decisions:
+
+Expected:
+
+• State → ABSTAIN
+• ambiguity detected
+• no unsafe resolution
+
+Definition:
+
+Ambiguity = multiple incompatible decisions (not multiple matching rules)
+
+---
+
+## ⚡ Step 9 — Verify Structural Convergence
+
+Given:
+
+different node inputs
+different arrival permutations
+
+Confirm:
+
+```
+resolve(normalize(S_A)) = resolve(normalize(S_B))
+```
+
+Provided:
+
+normalized structures converge to the same set
+
+Note:
+
+normalize(S) removes ordering effects and ensures structure equivalence before resolution.
+
+---
+
+## ⚡ Step 10 — Verify Hash Integrity
+
+Run:
+
+```
+certutil -hashfile demo\orl_ai_demo_base_v4_1.py SHA256
+certutil -hashfile outputs/orl_ai_result_v4_1.json SHA256
+```
+
+Compare results with:
+
+```
+VERIFY/FREEZE_DEMO_SHA256.txt
+```
+
+Confirm:
+
+• hashes match exactly
+
+---
+
+## ⚡ Expected Final Outcome
+
+• Final Decision → Action_Isolate
+• Final State → RESOLVED
+• Deterministic convergence → TRUE
+• Replay consistency → TRUE
+• Structural invariants → TRUE
+
+---
+
+## ⚡ Core Structural Identity
+
+```
+decision = resolve(normalize(structure))
+```
+
+Correctness depends only on:
+
+normalize(structure) satisfies:
+sufficient_structure
+conflict_free
+uniquely_valid
+
+Not on:
+
+• time
+• order
+• synchronization
+
+---
+
+## ⚡ Result
+
+Successful verification confirms that ORL-AI:
+
+• resolves decisions deterministically from structure
+• operates without time, order, or synchronization
+• safely handles incomplete, conflicting, and ambiguous states
+• produces reproducible and verifiable outputs
+
+---
+
+## ⭐ Final Statement
+
+ORL-AI verification demonstrates that independent systems, starting with incomplete and unordered inputs, can converge to the same final decision without reliance on time, order, synchronization, or coordination — purely through structural resolution.
