@@ -21,12 +21,28 @@ jobs:
           python-version: "3.11"
 
       - name: Verify frozen demo hash
+        shell: bash
         run: |
-          expected_demo=$(awk '
-            $0 == "demo/orl_ai_demo_base_v4_1.py" { getline; getline; print; exit }
-          ' VERIFY/FREEZE_DEMO_SHA256.txt | tr -d "\r")
+          expected_demo=$(python - <<'PY'
+          from pathlib import Path
+
+          text = Path("VERIFY/FREEZE_DEMO_SHA256.txt").read_text(encoding="utf-8")
+          lines = [line.strip() for line in text.splitlines()]
+
+          target = "demo/orl_ai_demo_base_v4_1.py"
+          for i, line in enumerate(lines):
+              if line == target and i + 2 < len(lines) and lines[i + 1] == "SHA256:":
+                  print(lines[i + 2])
+                  break
+          else:
+              raise SystemExit("Could not find frozen hash for demo/orl_ai_demo_base_v4_1.py")
+          PY
+          )
 
           actual_demo=$(sha256sum demo/orl_ai_demo_base_v4_1.py | awk '{print $1}')
+
+          echo "Expected demo hash: $expected_demo"
+          echo "Actual demo hash:   $actual_demo"
 
           [ "$actual_demo" = "$expected_demo" ] || (echo "demo hash mismatch" && exit 1)
 
@@ -84,11 +100,27 @@ jobs:
           PY
 
       - name: Verify frozen output hash
+        shell: bash
         run: |
-          expected_output=$(awk '
-            $0 == "outputs/orl_ai_result_v4_1.json" { getline; getline; print; exit }
-          ' VERIFY/FREEZE_DEMO_SHA256.txt | tr -d "\r")
+          expected_output=$(python - <<'PY'
+          from pathlib import Path
+
+          text = Path("VERIFY/FREEZE_DEMO_SHA256.txt").read_text(encoding="utf-8")
+          lines = [line.strip() for line in text.splitlines()]
+
+          target = "outputs/orl_ai_result_v4_1.json"
+          for i, line in enumerate(lines):
+              if line == target and i + 2 < len(lines) and lines[i + 1] == "SHA256:":
+                  print(lines[i + 2])
+                  break
+          else:
+              raise SystemExit("Could not find frozen hash for outputs/orl_ai_result_v4_1.json")
+          PY
+          )
 
           actual_output=$(sha256sum outputs/orl_ai_result_v4_1.json | awk '{print $1}')
+
+          echo "Expected output hash: $expected_output"
+          echo "Actual output hash:   $actual_output"
 
           [ "$actual_output" = "$expected_output" ] || (echo "output hash mismatch" && exit 1)
