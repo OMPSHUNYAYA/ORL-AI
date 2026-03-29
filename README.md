@@ -14,6 +14,8 @@
 ![Replay-Verifiable](https://img.shields.io/badge/Replay-Deterministic-orange)
 ![Open-Standard](https://img.shields.io/badge/Reference%20Implementation-Open%20Standard-blue)
 
+![ORL-AI Verify](https://github.com/OMPSHUNYAYA/ORL-AI/actions/workflows/verify.yml/badge.svg)
+
 **correctness = structure**
 
 ---
