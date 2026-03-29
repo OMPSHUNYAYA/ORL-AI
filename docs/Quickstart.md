@@ -1,4 +1,4 @@
-## ⭐ **ORL-AI — Quickstart**
+# ⭐ **ORL-AI — Quickstart**
 
 **Orderless Intelligence — Structural Decision System**
 
