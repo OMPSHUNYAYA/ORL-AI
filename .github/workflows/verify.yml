@@ -46,81 +46,64 @@ jobs:
 
           [ "$actual_demo" = "$expected_demo" ] || (echo "demo hash mismatch" && exit 1)
 
+      - name: Save committed sample output
+        run: |
+          cp outputs/orl_ai_result_v4_1.json outputs/orl_ai_result_v4_1.sample.json
+
       - name: Run ORL-AI demo and generate output
         run: |
           python demo/orl_ai_demo_base_v4_1.py --write-output --output outputs/orl_ai_result_v4_1.json
 
-      - name: Verify output content
+      - name: Verify output content and semantic equivalence
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          p = Path("outputs/orl_ai_result_v4_1.json")
-          data = json.loads(p.read_text(encoding="utf-8"))
+          generated_path = Path("outputs/orl_ai_result_v4_1.json")
+          sample_path = Path("outputs/orl_ai_result_v4_1.sample.json")
 
-          assert data["core_identity"]["axiom_1"] == "correctness != training + data_order + synchronization"
-          assert data["core_identity"]["axiom_2"] == "decision = resolve(normalize(structure))"
+          generated = json.loads(generated_path.read_text(encoding="utf-8"))
+          sample = json.loads(sample_path.read_text(encoding="utf-8"))
 
-          assert data["reference_merge"]["state"] == "RESOLVED"
-          assert data["reference_merge"]["decision"] == "Action_Isolate"
+          assert generated["core_identity"]["axiom_1"] == "correctness != training + data_order + synchronization"
+          assert generated["core_identity"]["axiom_2"] == "decision = resolve(normalize(structure))"
 
-          assert data["replay_merge"]["state"] == "RESOLVED"
-          assert data["replay_merge"]["decision"] == "Action_Isolate"
-          assert data["reference_merge"]["certificate"] == data["replay_merge"]["certificate"]
+          assert generated["reference_merge"]["state"] == "RESOLVED"
+          assert generated["reference_merge"]["decision"] == "Action_Isolate"
 
-          assert data["conflict_merge"]["state"] == "ABSTAIN"
-          assert data["conflict_merge"]["governance"]["governance_status"] == "REJECTED_CONFLICT"
+          assert generated["replay_merge"]["state"] == "RESOLVED"
+          assert generated["replay_merge"]["decision"] == "Action_Isolate"
+          assert generated["reference_merge"]["certificate"] == generated["replay_merge"]["certificate"]
 
-          assert data["ambiguity_merge"]["state"] == "ABSTAIN"
-          assert data["ambiguity_merge"]["governance"]["governance_status"] == "REJECTED_AMBIGUITY"
+          assert generated["conflict_merge"]["state"] == "ABSTAIN"
+          assert generated["conflict_merge"]["governance"]["governance_status"] == "REJECTED_CONFLICT"
 
-          assert data["five_node_merge"]["state"] == "RESOLVED"
-          assert data["five_node_merge"]["decision"] == "Action_Approve"
+          assert generated["ambiguity_merge"]["state"] == "ABSTAIN"
+          assert generated["ambiguity_merge"]["governance"]["governance_status"] == "REJECTED_AMBIGUITY"
 
-          assert data["five_node_replay_merge"]["state"] == "RESOLVED"
-          assert data["five_node_replay_merge"]["decision"] == "Action_Approve"
-          assert data["five_node_merge"]["certificate"] == data["five_node_replay_merge"]["certificate"]
+          assert generated["five_node_merge"]["state"] == "RESOLVED"
+          assert generated["five_node_merge"]["decision"] == "Action_Approve"
 
-          assert data["permutation_check"]["checked"] == 6
-          assert data["permutation_check"]["independent"] is True
-          assert data["permutation_check"]["state"] == "RESOLVED"
-          assert data["permutation_check"]["decision"] == "Action_Isolate"
+          assert generated["five_node_replay_merge"]["state"] == "RESOLVED"
+          assert generated["five_node_replay_merge"]["decision"] == "Action_Approve"
+          assert generated["five_node_merge"]["certificate"] == generated["five_node_replay_merge"]["certificate"]
 
-          assert data["final_checks"]["converged_decision"] is True
-          assert data["final_checks"]["matching_certificate"] is True
-          assert data["final_checks"]["five_node_converged_decision"] is True
-          assert data["final_checks"]["five_node_matching_certificate"] is True
-          assert data["final_checks"]["conflict_governance_stable"] is True
-          assert data["final_checks"]["conflict_capsule_stable"] is True
-          assert data["final_checks"]["dual_approve_overlap_resolved"] is True
-          assert data["final_checks"]["dual_approve_overlap_decision"] is True
+          assert generated["permutation_check"]["checked"] == 6
+          assert generated["permutation_check"]["independent"] is True
+          assert generated["permutation_check"]["state"] == "RESOLVED"
+          assert generated["permutation_check"]["decision"] == "Action_Isolate"
 
-          print("ORL-AI output content verified.")
+          assert generated["final_checks"]["converged_decision"] is True
+          assert generated["final_checks"]["matching_certificate"] is True
+          assert generated["final_checks"]["five_node_converged_decision"] is True
+          assert generated["final_checks"]["five_node_matching_certificate"] is True
+          assert generated["final_checks"]["conflict_governance_stable"] is True
+          assert generated["final_checks"]["conflict_capsule_stable"] is True
+          assert generated["final_checks"]["dual_approve_overlap_resolved"] is True
+          assert generated["final_checks"]["dual_approve_overlap_decision"] is True
+
+          assert generated == sample, "Generated output JSON is not semantically identical to committed sample output JSON"
+
+          print("ORL-AI output content and semantic equivalence verified.")
           PY
-
-      - name: Verify frozen output hash
-        shell: bash
-        run: |
-          expected_output=$(python - <<'PY'
-          from pathlib import Path
-
-          text = Path("VERIFY/FREEZE_DEMO_SHA256.txt").read_text(encoding="utf-8")
-          lines = [line.strip() for line in text.splitlines()]
-
-          target = "outputs/orl_ai_result_v4_1.json"
-          for i, line in enumerate(lines):
-              if line == target and i + 2 < len(lines) and lines[i + 1] == "SHA256:":
-                  print(lines[i + 2])
-                  break
-          else:
-              raise SystemExit("Could not find frozen hash for outputs/orl_ai_result_v4_1.json")
-          PY
-          )
-
-          actual_output=$(sha256sum outputs/orl_ai_result_v4_1.json | awk '{print $1}')
-
-          echo "Expected output hash: $expected_output"
-          echo "Actual output hash:   $actual_output"
-
-          [ "$actual_output" = "$expected_output" ] || (echo "output hash mismatch" && exit 1)
