@@ -1,4 +1,4 @@
-## ⭐ **FAQ — ORL-AI**
+# ⭐ **FAQ — ORL-AI**
 
 **Orderless Intelligence — Structural Decision System**
 
