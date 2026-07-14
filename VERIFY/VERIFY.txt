@@ -1,242 +1,672 @@
-⭐ ORL-AI — Verification Guide
+⭐ ORL-AI — VERIFICATION GUIDE
 
-Orderless Intelligence — Structural Decision System
-Deterministic • Order-Free • Time-Independent Decision Resolution
+Deterministic Bounded Structural Decision Resolution
 
----
+This guide defines the recommended procedure for verifying the current ORL-AI Python reference implementation and its committed output artifact.
 
-## ⚡ Purpose
+ORL-AI normalizes input signal strings, checks an embedded conflict-pair table, applies an embedded decision-rule table, and returns one of three bounded resolver states:
 
-This document provides step-by-step verification instructions to confirm that the ORL-AI reference implementation:
+- RESOLVED
+- INCOMPLETE
+- ABSTAIN
 
-• produces deterministic decisions
-• is independent of time, order, and synchronization
-• converges structurally across independent nodes
-• generates reproducible outputs
+Current governing relation:
 
----
+same normalized supported signal set + same embedded conflict pairs + same embedded decision rules -> same bounded decision state and current result hash
 
-## ⚡ Step 1 — Run the Reference Demo
+ORL-AI is developed within the Shunyaya Framework.
 
-Open terminal in the project root.
+===============================================================================
+1. SCOPE
+===============================================================================
 
-Run:
+This guide applies to:
 
-```
-python demo/orl_ai_demo_base_v4_1.py
-```
-
----
-
-## ⚡ Step 2 — Observe Structural Behavior
-
-You should observe:
-
-• multiple independent nodes (A, B, C, etc.)
-• each node starts with partial signals
-• no timestamps
-• no ordering assumptions
-• no synchronization between nodes
-
-Initial state:
-
-• Node-A → INCOMPLETE
-• Node-B → INCOMPLETE
-• Node-C → INCOMPLETE
-
-After structural merge:
-
-• Final State → RESOLVED
-• Final Decision → Action_Isolate
-
----
-
-## ⚡ Step 3 — Verify Core Structural Invariants
-
-Confirm the following:
-
-• same structure → same decision
-• decision does not depend on input order
-• decision does not depend on time
-• decision does not depend on synchronization
-
-Expected:
-
-• Order independence → TRUE
-• Time independence → TRUE
-• Sync independence → TRUE
-
----
-
-## ⚡ Step 4 — Replay / Determinism Check
-
-Run the demo multiple times:
-
-```
-python demo/orl_ai_demo_base_v4_1.py
-```
-
-Confirm:
-
-• identical final decision across runs
-• identical structural behavior
-• identical convergence outcome
-
-Expected:
-
-• Deterministic behavior → TRUE
-
-Optional:
-
-Run multiple permutations (if supported)
-
-Confirm:
-
-resolve(normalize(P(S))) = resolve(normalize(S))
-
----
-
-## ⚡ Step 5 — Generate Verifiable Output
-
-Run:
-
-```
-python demo/orl_ai_demo_base_v4_1.py --write-output --output outputs/orl_ai_result_v4_1.json
-```
-
----
-
-## ⚡ Step 6 — Validate Output Behavior
-
-Confirm:
-
-• output JSON is generated:
-`outputs/orl_ai_result_v4_1.json`
-• final decision = Action_Isolate
-• final state = RESOLVED
-
-Also verify:
-
-• Node states begin INCOMPLETE
-• merge produces RESOLVED
-• no probabilistic variation
-
----
-
-## ⚡ Step 7 — Conflict Safety Check
-
-If conflicting signals are present (e.g., fatigue and no_fatigue):
-
-Expected:
-
-• State → ABSTAIN
-• no forced decision
-• conflict explicitly detected
-
----
-
-## ⚡ Step 8 — Ambiguity Safety Check
-
-If structure supports multiple incompatible decisions:
-
-Expected:
-
-• State → ABSTAIN
-• ambiguity detected
-• no unsafe resolution
-
-Definition:
-
-Ambiguity = multiple incompatible decisions (not multiple matching rules)
-
----
-
-## ⚡ Step 9 — Verify Structural Convergence
-
-Given:
-
-different node inputs
-different arrival permutations
-
-Confirm:
-
-```
-resolve(normalize(S_A)) = resolve(normalize(S_B))
-```
-
-Provided:
-
-normalized structures converge to the same set
-
-Note:
-
-normalize(S) removes ordering effects and ensures structure equivalence before resolution.
-
----
-
-## ⚡ Step 10 — Verify Hash Integrity
-
-Run:
-
-```
-certutil -hashfile demo\orl_ai_demo_base_v4_1.py SHA256
-certutil -hashfile outputs/orl_ai_result_v4_1.json SHA256
-```
-
-Compare results with:
-
-```
+demo/orl_ai_demo_base_v4_1.py
+outputs/orl_ai_result_v4_1.json
+VERIFY/VERIFY.txt
 VERIFY/FREEZE_DEMO_SHA256.txt
-```
 
-Confirm:
+The current verification procedure may establish:
 
-• hashes match exactly
+- successful Python execution;
+- expected committed scenario results;
+- deterministic normalization of the committed signal strings;
+- explicit conflict and decision-rule evaluation;
+- repeatable current result hashes;
+- equality between committed reference and replay groupings;
+- all six permutations of the three committed reference node groups;
+- regeneration of the reference JSON output;
+- byte identity of frozen artifacts when SHA-256 values match.
 
----
+It does not establish:
 
-## ⚡ Expected Final Outcome
+- general artificial intelligence;
+- unrestricted decision correctness;
+- universal order independence;
+- universal time independence;
+- universal synchronization independence;
+- autonomous networking or evidence delivery;
+- distributed consensus;
+- independent proof reconstruction;
+- cross-language conformance;
+- security;
+- production readiness;
+- medical, legal, financial, cybersecurity, or operational validity.
 
-• Final Decision → Action_Isolate
-• Final State → RESOLVED
-• Deterministic convergence → TRUE
-• Replay consistency → TRUE
-• Structural invariants → TRUE
+===============================================================================
+2. REQUIREMENTS
+===============================================================================
 
----
+Recommended environment:
 
-## ⚡ Core Structural Identity
+Python 3.9 or later
 
-```
-decision = resolve(normalize(structure))
-```
+The current demo uses only Python standard-library modules.
 
-Correctness depends only on:
+No third-party runtime package is required.
 
-normalize(structure) satisfies:
-sufficient_structure
-conflict_free
-uniquely_valid
+The resolver does not use GPS, NTP, a runtime database, a live server, wall-clock time, or runtime internet access as decision inputs.
 
-Not on:
+===============================================================================
+3. RUN THE REFERENCE DEMO
+===============================================================================
 
-• time
-• order
-• synchronization
+Open Command Prompt, PowerShell, Terminal, or another shell in the repository root.
 
----
+Run:
 
-## ⚡ Result
+python demo/orl_ai_demo_base_v4_1.py
 
-Successful verification confirms that ORL-AI:
+On systems where python does not select Python 3, use:
 
-• resolves decisions deterministically from structure
-• operates without time, order, or synchronization
-• safely handles incomplete, conflicting, and ambiguous states
-• produces reproducible and verifiable outputs
+python3 demo/orl_ai_demo_base_v4_1.py
 
----
+The process should complete without an unhandled exception.
 
-## ⭐ Final Statement
+A zero exit code alone is not sufficient because the current script prints checks but does not enforce every failed condition through a non-zero exit code.
 
-ORL-AI verification demonstrates that independent systems, starting with incomplete and unordered inputs, can converge to the same final decision without reliance on time, order, synchronization, or coordination — purely through structural resolution.
+Review the displayed results.
+
+===============================================================================
+4. VERIFY THE THREE-NODE REFERENCE RESULT
+===============================================================================
+
+Committed reference groups:
+
+Node-A = {fever}
+Node-B = {cough}
+Node-C = {fatigue}
+
+Each local node should begin with:
+
+State    = INCOMPLETE
+Decision = None
+
+After local set union and normalization, the merged structure should be:
+
+cough
+fatigue
+fever
+
+Expected result:
+
+State             = RESOLVED
+Decision          = Action_Isolate
+Governance status = ACCEPTED_UNIQUE_MATCH
+
+Expected current result hash:
+
+7f763b91b0ed88ecae869feba2d872ee7bcfcc6afdd666eb35bf989ca10a89fb
+
+This hash is a deterministic result hash for the current delimiter-based payload construction.
+
+It is not an independently reconstructed proof certificate.
+
+===============================================================================
+5. VERIFY THE REGROUPED REPLAY RESULT
+===============================================================================
+
+Committed replay grouping:
+
+Replay-X = {cough, fatigue}
+Replay-Y = {fever}
+Replay-Z = {}
+
+The merged normalized structure should again be:
+
+cough
+fatigue
+fever
+
+Expected result:
+
+State             = RESOLVED
+Decision          = Action_Isolate
+Governance status = ACCEPTED_UNIQUE_MATCH
+
+Expected current result hash:
+
+7f763b91b0ed88ecae869feba2d872ee7bcfcc6afdd666eb35bf989ca10a89fb
+
+Expected comparisons:
+
+same state        = True
+same decision     = True
+same current hash = True
+
+This confirms same-evidence equality after local regrouping.
+
+It does not establish transport replay protection, autonomous evidence exchange, synchronization, or consensus.
+
+===============================================================================
+6. VERIFY THE EXPLICIT CONFLICT CASE
+===============================================================================
+
+Committed conflicting structure:
+
+cough
+fatigue
+fever
+no_fatigue
+
+Embedded conflict pair:
+
+fatigue
+no_fatigue
+
+Expected result:
+
+State             = ABSTAIN
+Decision          = None
+Governance status = REJECTED_CONFLICT
+
+Expected current result hash:
+
+81f7404130a2a7a44d4528186d47bef8f6711a7f5a4c7bf27a47e390082e70cf
+
+The resolver should not rank, repair, or override the conflict.
+
+===============================================================================
+7. VERIFY THE MULTI-DECISION AMBIGUITY CASE
+===============================================================================
+
+Committed ambiguity structure:
+
+cough
+fatigue
+fever
+travel_history
+
+Matching decisions:
+
+Action_Isolate
+Action_Monitor
+
+Expected result:
+
+State             = ABSTAIN
+Decision          = None
+Governance status = REJECTED_AMBIGUITY
+
+Expected current result hash:
+
+45394162f33a9650ca8a456d8969296b5e68ece6ec64b7c2690af787517e3d8b
+
+The resolver should not silently select one of the incompatible decision labels.
+
+===============================================================================
+8. VERIFY THE NOMINAL FIVE-NODE CASE
+===============================================================================
+
+Committed node containers:
+
+Five Node A = {alert}
+Five Node B = {verified_source}
+Five Node C = {stable_metrics}
+Five Node D = {}
+Five Node E = {}
+
+Three node containers contribute signals and two are empty.
+
+Expected result:
+
+State             = RESOLVED
+Decision          = Action_Approve
+Governance status = ACCEPTED_UNIQUE_MATCH
+
+Expected current result hash:
+
+eaa36a8427d43a6cf0e89e0d38e7ed744c4246637173bc31a6a733d7bbdeb0be
+
+This is a local five-container demonstration, not a five-process distributed protocol.
+
+===============================================================================
+9. VERIFY THE FIVE-NODE REPLAY
+===============================================================================
+
+Replay grouping:
+
+Replay Five Node 1 = {alert, verified_source}
+Replay Five Node 2 = {stable_metrics}
+Replay Five Node 3 = {}
+
+Expected result:
+
+State    = RESOLVED
+Decision = Action_Approve
+
+Expected current result hash:
+
+eaa36a8427d43a6cf0e89e0d38e7ed744c4246637173bc31a6a733d7bbdeb0be
+
+Expected comparisons:
+
+five_node_converged_decision   = True
+five_node_matching_certificate = True
+
+===============================================================================
+10. VERIFY THE APPROVAL, ESCALATION, AND OVERLAP PATHS
+===============================================================================
+
+Approval path:
+
+{verified_source, stable_metrics, low_risk}
+-> RESOLVED
+-> Action_Approve
+
+Expected current result hash:
+
+3b05a4c5e2726b43cd1a41197decd753a61d10674c8cdfa7e7fa84e332ed9bb4
+
+Escalation path:
+
+{alert, critical_signal, verified_source}
+-> RESOLVED
+-> Action_Escalate
+
+Expected current result hash:
+
+d2d82cb52e4c82f8620e14f08b0982877e892d28f0c7202217220c8ac05b44e8
+
+Same-decision overlap:
+
+{alert, verified_source, stable_metrics, low_risk}
+
+Two embedded rules match, but both produce Action_Approve.
+
+Expected result:
+
+State             = RESOLVED
+Decision          = Action_Approve
+Governance status = ACCEPTED_UNIQUE_MATCH
+
+Expected current result hash:
+
+50b5996a28f3c4211d3f8d0b02e48f85889518f0104c674bf6d3144416ff344c
+
+Expected console values:
+
+Dual approve overlap state  : RESOLVED
+Dual approve overlap action : Action_Approve
+
+===============================================================================
+11. VERIFY THE CONFLICT REGROUPING
+===============================================================================
+
+Committed conflict replay grouping:
+
+Conflict Replay A = {fatigue}
+Conflict Replay B = {no_fatigue}
+Conflict Replay C = {fever, cough}
+
+The normalized merged structure should match the original conflict case.
+
+Expected result:
+
+State             = ABSTAIN
+Decision          = None
+Governance status = REJECTED_CONFLICT
+
+Expected current result hash:
+
+81f7404130a2a7a44d4528186d47bef8f6711a7f5a4c7bf27a47e390082e70cf
+
+Expected comparisons:
+
+conflict_governance_stable = True
+conflict_capsule_stable    = True
+
+===============================================================================
+12. VERIFY THE PERMUTATION CHECK
+===============================================================================
+
+The current executable test permutes these three committed groups:
+
+{fever}
+{cough}
+{fatigue}
+
+Number of permutations:
+
+3! = 6
+
+Expected output:
+
+Permutations checked        : 6
+Permutation independence    : True
+Resolved state              : RESOLVED
+Resolved decision           : Action_Isolate
+
+This is exhaustive only for the three committed reference groups.
+
+It is not a universal order-independence proof.
+
+===============================================================================
+13. VERIFY THE FINAL CHECKS
+===============================================================================
+
+The console should display six Boolean comparison checks as True, together with:
+
+Dual approve overlap state  : RESOLVED
+Dual approve overlap action : Action_Approve
+
+The generated JSON should contain all eight final_checks values as true:
+
+{
+  "converged_decision": true,
+  "matching_certificate": true,
+  "five_node_converged_decision": true,
+  "five_node_matching_certificate": true,
+  "conflict_governance_stable": true,
+  "conflict_capsule_stable": true,
+  "dual_approve_overlap_resolved": true,
+  "dual_approve_overlap_decision": true
+}
+
+Manually confirm both the Boolean checks and the two overlap values.
+
+===============================================================================
+14. GENERATE THE REFERENCE JSON OUTPUT
+===============================================================================
+
+Run:
+
+python demo/orl_ai_demo_base_v4_1.py --write-output --output outputs/orl_ai_result_v4_1.json
+
+Expected final console line:
+
+Wrote output JSON           : outputs/orl_ai_result_v4_1.json
+
+The command writes or replaces the selected output file.
+
+The generated JSON should parse successfully and contain these top-level keys:
+
+core_identity
+reference_merge
+replay_merge
+conflict_merge
+ambiguity_merge
+five_node_merge
+five_node_replay_merge
+domain_portability
+governance_stability
+resolution_capsules
+permutation_check
+final_checks
+theorem_block
+
+The labels proof_class, certificate, and theorem_block are current project-defined field names.
+
+They should not be interpreted as independently verified formal proofs.
+
+===============================================================================
+15. REPEATABILITY CHECK
+===============================================================================
+
+Generate two temporary outputs without changing the code:
+
+python demo/orl_ai_demo_base_v4_1.py --write-output --output outputs/run_1.json
+python demo/orl_ai_demo_base_v4_1.py --write-output --output outputs/run_2.json
+
+Windows Command Prompt:
+
+fc /b outputs\run_1.json outputs\run_2.json
+
+Expected:
+
+FC: no differences encountered
+
+PowerShell:
+
+$h1 = (Get-FileHash outputs\run_1.json -Algorithm SHA256).Hash
+$h2 = (Get-FileHash outputs\run_2.json -Algorithm SHA256).Hash
+$h1
+$h2
+$h1 -eq $h2
+
+Expected final value:
+
+True
+
+Linux or macOS:
+
+cmp outputs/run_1.json outputs/run_2.json
+sha256sum outputs/run_1.json outputs/run_2.json
+
+Expected:
+
+- cmp produces no difference output;
+- both SHA-256 values are identical.
+
+Delete temporary outputs after review when they are not intended for the repository.
+
+===============================================================================
+16. VERIFY FROZEN ARTIFACT HASHES
+===============================================================================
+
+Compare the committed files with:
+
+VERIFY/FREEZE_DEMO_SHA256.txt
+
+Windows Command Prompt:
+
+certutil -hashfile demo\orl_ai_demo_base_v4_1.py SHA256
+certutil -hashfile outputs\orl_ai_result_v4_1.json SHA256
+
+PowerShell:
+
+Get-FileHash demo\orl_ai_demo_base_v4_1.py -Algorithm SHA256
+Get-FileHash outputs\orl_ai_result_v4_1.json -Algorithm SHA256
+
+Linux:
+
+sha256sum demo/orl_ai_demo_base_v4_1.py
+sha256sum outputs/orl_ai_result_v4_1.json
+
+macOS:
+
+shasum -a 256 demo/orl_ai_demo_base_v4_1.py
+shasum -a 256 outputs/orl_ai_result_v4_1.json
+
+Confirm that the resulting SHA-256 values exactly match the corresponding entries in:
+
+VERIFY/FREEZE_DEMO_SHA256.txt
+
+Frozen artifact hashing establishes:
+
+same file bytes -> same SHA-256 hash
+
+It does not independently establish:
+
+- resolver correctness;
+- rule validity;
+- schema validity;
+- decision truth;
+- independent reconstruction;
+- security;
+- production readiness.
+
+Do not update frozen hashes until all intended demo, output, workflow, and documentation changes for the coordinated technical revision are complete.
+
+===============================================================================
+17. PASS CONDITIONS
+===============================================================================
+
+Verification passes when:
+
+- the Python process completes without an unhandled exception;
+- each local reference node is INCOMPLETE;
+- the reference merge is RESOLVED -> Action_Isolate;
+- the regrouped replay produces the same state, decision, and current hash;
+- the explicit conflict returns ABSTAIN;
+- the ambiguity case returns ABSTAIN;
+- the nominal five-node and replay cases resolve to Action_Approve;
+- the approval path resolves to Action_Approve;
+- the escalation path resolves to Action_Escalate;
+- the same-decision overlap resolves to Action_Approve;
+- the conflict regrouping remains REJECTED_CONFLICT;
+- exactly six reference-group permutations are checked;
+- permutation independence is True;
+- all six displayed Boolean comparison checks are True;
+- the two overlap values match the expected state and action;
+- all eight JSON final_checks values are true;
+- repeated unchanged JSON generation is byte-identical;
+- frozen artifact hashes match.
+
+===============================================================================
+18. FAILURE CONDITIONS
+===============================================================================
+
+Treat verification as failed when:
+
+- the script raises an unhandled exception;
+- the expected output file is not created;
+- the reference merge does not resolve to Action_Isolate;
+- the reference and replay results differ;
+- the conflict case does not return ABSTAIN;
+- the ambiguity case does not return ABSTAIN;
+- the overlap case does not resolve to Action_Approve;
+- the permutation count is not six;
+- permutation independence is not True;
+- any expected Boolean comparison is False;
+- either overlap value differs;
+- any generated JSON final_checks value is false;
+- repeated unchanged JSON generation differs;
+- frozen hashes differ unexpectedly.
+
+A frozen-hash mismatch may indicate an intentional local modification.
+
+Review the repository diff before treating the mismatch as corruption.
+
+===============================================================================
+19. CURRENT RESULT-HASH BOUNDARY
+===============================================================================
+
+The function named certificate(...) hashes a delimiter-based text payload containing:
+
+- normalized structure;
+- state;
+- decision;
+- matched decisions.
+
+Current relation:
+
+same current payload bytes -> same SHA-256 hash
+
+A matching current result hash does not by itself prove:
+
+- correct rule design;
+- factual decision truth;
+- schema validity;
+- signal authenticity;
+- independent reconstruction;
+- security;
+- production safety.
+
+===============================================================================
+20. SYNTHETIC SCENARIO NOTICE
+===============================================================================
+
+Some committed labels resemble medical or operational terms:
+
+fever
+cough
+fatigue
+Action_Isolate
+Action_Monitor
+Action_DarkRoomCare
+
+They are synthetic demonstration labels only.
+
+The verification procedure does not validate:
+
+- medical advice;
+- diagnosis;
+- clinical decision support;
+- emergency-response policy;
+- operational authorization;
+- financial decisions;
+- legal decisions;
+- cybersecurity actions.
+
+No real-world decision should be based on the embedded demonstration rules.
+
+===============================================================================
+21. CURRENT VERIFICATION LIMITATIONS
+===============================================================================
+
+The current repository does not yet provide:
+
+- formal versioned input schemas;
+- an enforced supported-signal vocabulary;
+- versioned external decision-rule manifests;
+- versioned external conflict manifests;
+- canonical byte serialization;
+- schema, ruleset, or conflict-manifest version binding;
+- assertion-enforced failure gates for every condition;
+- an independent verifier;
+- cross-language conformance;
+- a broad malformed-input or hostile-input corpus;
+- structural closure or immutable finality;
+- a production threat model.
+
+Additional evidence may change a previously RESOLVED state to ABSTAIN.
+
+The current model does not claim monotonic finality.
+
+===============================================================================
+22. FUTURE VERIFICATION TARGET
+===============================================================================
+
+A stronger revision should support:
+
+same validated canonical signals + same ruleset and conflict-manifest versions -> same independently reconstructed bounded decision result and receipt
+
+This target requires:
+
+- validated schemas;
+- canonical byte serialization;
+- version-bound rule and conflict manifests;
+- assertion-enforced test vectors;
+- independent reconstruction;
+- cross-language conformance;
+- explicit closure and later-evidence rules.
+
+This target is not part of the current implementation.
+
+===============================================================================
+23. FINAL VERIFICATION STATEMENT
+===============================================================================
+
+A successful current verification supports this bounded statement:
+
+Under the current Python implementation, the same normalized committed signal set, evaluated with the same embedded conflict pairs and decision rules, produces the same bounded decision state and current result hash.
+
+For the committed three-node reference groups:
+
+6 permutations checked
+State    = RESOLVED
+Decision = Action_Isolate
+
+This does not establish universal decision correctness, general artificial intelligence, distributed consensus, independent proof reconstruction, or production safety.
