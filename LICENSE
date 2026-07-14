@@ -1,226 +1,85 @@
-Open Standard License — ORL-AI Reference Implementation
+ORL-AI Open Use License v1.0
 
-ORL-AI — Orderless Intelligence (Structural Decision System)
-Shunyaya Structural Decision Model
+1. Reference Implementation
 
----
+Permission is granted, free of charge, on a worldwide, perpetual, non-exclusive, royalty-free, and irrevocable basis, provided that these terms are followed, to any person or organization obtaining a copy of the ORL-AI reference implementation.
 
-Legal Status
+This permission includes the right to use, execute, study, copy, reproduce, publish, distribute, modify, implement, extend, and deploy the reference implementation, in whole or in part, for commercial or non-commercial purposes.
 
-This license is an open permissive Open Standard license for the ORL-AI reference implementation.
+This permission applies to original, modified, and extended versions, subject to the conditions in Section 2.
 
-To the maximum extent permitted by applicable law, this license grants rights similar in spirit to permissive open-source licenses, while preserving truthful representation requirements for the ORL-AI name and reference implementation.
+No registration, fee, or prior approval is required.
 
-If any provision is found unenforceable, the remaining provisions remain in effect.
 
----
+2. Conditions
 
-Permission
+Redistributions of the reference implementation, or substantial portions of it, must include a copy of this license.
 
-Permission is hereby granted, free of charge, to any person or organization to:
+Applicable third-party license notices and attributions must be retained.
 
-use
-execute
-study
-reproduce
-publish
-distribute
-modify
-implement
-extend
+Modified or extended versions must be clearly identified as modified and must not be represented as the official or canonical ORL-AI reference implementation unless explicitly authorized by the authors or maintainers.
 
-the ORL-AI reference implementation, in whole or in part, for commercial or non-commercial use, subject only to the representation and naming conditions defined in this license.
+The name "ORL-AI" or "Orderless Intelligence" may be used for accurate descriptive reference, but must not imply official authorship, endorsement, certification, approval, conformance, governance authority, or production readiness.
 
-No registration, fees, or approval required.
+No right to use any trademark, service mark, logo, or other branding is granted except for accurate descriptive reference.
 
----
+Attribution to ORL-AI is not required, but is encouraged.
 
-No Restrictions on Use
+Suggested attribution:
 
-This reference implementation imposes no restrictions on use, except:
-
-truthful representation
-non-misleading use of the ORL-AI name
-
-Attribution is not required.
-No endorsement or certification is implied.
-No runtime obligations apply.
-
-Correctness is governed by:
-
-decision = resolve(normalize(structure))
-
-—not by licensing terms.
-
----
-
-Representation & Naming
-
-Modified or extended implementations:
-
-must not be presented as the canonical ORL-AI reference implementation unless structural behavior is preserved
-must not imply official authorship, certification, or endorsement
-
-Use of the name “ORL-AI” must not imply:
-
-endorsement
-certification
-governance authority
-official compliance
-
----
-
-Recommended Attribution (Optional)
-
-Preferred form:
-
-Implements ORL-AI — Orderless Intelligence (Shunyaya Structural Decision Model)
+Based on the ORL-AI reference implementation developed within the Shunyaya Framework.
 
 Attribution must not imply endorsement.
 
----
+Third-party components remain subject to their own licenses and notices.
 
-Scope of the Reference Implementation
 
-This release includes:
+3. Architecture and Documentation
 
-signal inputs
-structural decision resolution logic
-rule evaluation and governance handling
-demo application (Python)
-outputs and reference outputs
-validation traces
+Unless a file or section states otherwise, the ORL-AI architecture descriptions, diagrams, and documentation are licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
 
-ORL-AI defines a deterministic decision model where decisions emerge from structure:
+Under that license, these materials may be shared and adapted for non-commercial purposes with appropriate credit, a link to the license, and an indication of whether changes were made.
 
-resolve(normalize(structure)) →
+Attribution must not imply endorsement.
 
-RESOLVED     if a valid unique decision exists
-INCOMPLETE   if required signals are missing
-ABSTAIN      if structure is conflicting or ambiguous
+The full license terms govern these materials:
 
-Ambiguity is defined as multiple incompatible decisions, not multiple matching rules.
+https://creativecommons.org/licenses/by-nc/4.0/legalcode
 
----
+Commercial use of the architecture descriptions, diagrams, and documentation requires separate written permission from the relevant rights holder.
 
-What This Demonstrates
 
-• decision resolution from fragmented signals
-• independence from input ordering
-• independence from timestamps and synchronized clocks
-• safe handling of incomplete decision states
-• conflict and ambiguity containment
-• deterministic convergence across independent nodes
-• reproducible decision outcomes
+4. Responsibility
 
----
+Use of ORL-AI is entirely at the user's own risk.
 
-Conformance
+The reference implementation does not guarantee general artificial intelligence, machine-learning correctness, prediction accuracy, unrestricted decision correctness, factual truth, signal validity, signal authenticity, sender identity, authorization, encryption, access control, delivery, network convergence, consensus, Byzantine fault tolerance, reliable broadcast, replay-attack prevention, complete malformed-input validation, universal order independence, universal time independence, universal synchronization independence, canonical cross-language serialization, independent receipt reconstruction, immutable finality, regulatory compliance, production readiness, or fitness for AI, medical, legal, financial, cybersecurity, operational, safety-critical, or other high-risk use.
 
-An implementation is considered compatible if it preserves:
+The current implementation uses embedded conflict pairs and decision rules. It does not provide a formal versioned input schema, an enforced supported-signal allowlist, versioned external rule or conflict manifests, canonical byte serialization, schema or manifest binding, an independent verifier, cross-language conformance, complete assertion-enforced failure gates, structural closure, or a production threat model.
 
-resolution based on normalized structure
-independence from order as authority
-independence from synchronized time
-deterministic convergence
-reproducibility under equivalent inputs
-explicit INCOMPLETE and ABSTAIN handling
+The current function named certificate(...) produces a deterministic SHA-256 result hash over a project-defined payload. The fields named certificate, proof_class, and theorem_block do not constitute an independently reconstructed proof, signed certificate, authenticated attestation, formal theorem, or production assurance.
 
-Conformance is judged by observable behavior, not internal implementation.
+The current Python implementation and committed scenarios provide bounded reference results only. They must not be treated as guarantees of decision truth, safety, domain validity, operational authority, or real-world correctness.
 
-No specific algorithm, model, or internal design is mandated.
+Additional evidence may change a previously RESOLVED state to ABSTAIN. The current implementation does not provide monotonic finality or immutable closure.
 
----
+Some examples use synthetic health-like and operational labels solely to demonstrate resolver behavior. ORL-AI is not intended for medical diagnosis, treatment, clinical decision support, emergency response, or other real-world decision authority. No real-world decision should be based on the embedded demonstration rules.
 
-Relationship to Shunyaya Framework
 
-ORL-AI is part of the broader Shunyaya Structural Universal Mathematics (SSUM) framework.
+5. No Warranty
 
-It builds on:
+THE ORL-AI REFERENCE IMPLEMENTATION, ARCHITECTURE, DIAGRAMS, AND DOCUMENTATION ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
 
-STOCRS → structure-first computation
-SSUM-Time → time independence
-ORL → structural truth systems
+THIS INCLUDES, BUT IS NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ACCURACY, RELIABILITY, SECURITY, OR FITNESS FOR AI, MEDICAL, LEGAL, FINANCIAL, CYBERSECURITY, OPERATIONAL, SAFETY-CRITICAL, OR OTHER HIGH-RISK USE.
 
----
 
-Architecture License
+6. Limitation of Liability
 
-The conceptual architecture and documentation are licensed under:
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE AUTHORS AND CONTRIBUTORS SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGE, LOSS, OR OTHER LIABILITY ARISING FROM THE USE, MODIFICATION, DISTRIBUTION, IMPLEMENTATION, EXTENSION, OR DEPLOYMENT OF ORL-AI.
 
-Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0)
 
-Permitted:
+7. Severability
 
-research
-academic use
-study and reproduction
-non-commercial distribution
+If any provision of this license is held unenforceable, the remaining provisions remain in effect.
 
-Commercial use of architecture text is not permitted under this license.
-
-Full license:
-https://creativecommons.org/licenses/by-nc/4.0/
-
----
-
-Responsibility
-
-Use of ORL-AI in:
-
-AI systems
-decision systems
-cybersecurity systems
-financial systems
-autonomous systems
-distributed intelligence systems
-safety-critical environments
-
-is entirely at the user’s own responsibility.
-
-ORL-AI provides:
-
-deterministic structural decision resolution
-correctness is defined by structure
-safe handling of incomplete/conflicting/ambiguous decisions
-
-It does not provide:
-
-decision outcome correctness guarantees
-intent correctness guarantees
-regulatory compliance
-system-level fault tolerance
-domain-specific validation
-
----
-
-No Warranty
-
-THE ORL-AI REFERENCE IMPLEMENTATION IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND.
-
-THIS INCLUDES, BUT IS NOT LIMITED TO:
-
-MERCHANTABILITY
-FITNESS FOR A PARTICULAR PURPOSE
-NON-INFRINGEMENT
-
-IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM USE OF THIS IMPLEMENTATION.
-
----
-
-Closing Statement
-
-ORL-AI explores a fundamental possibility:
-
-Decision systems can resolve outcomes from structure, not from time, order, or synchronization.
-
-It is released openly to encourage:
-
-independent validation
-real-world testing
-safe experimentation
-broader adoption of structure-first decision systems
-
-Decision-making, traditionally governed by sequence, timing, and coordination, may also be understood as a process of structural resolution.
-
-ORL-AI is offered as a reference model for that shift.
+Exercise of the permissions granted under this license is subject to these terms.
