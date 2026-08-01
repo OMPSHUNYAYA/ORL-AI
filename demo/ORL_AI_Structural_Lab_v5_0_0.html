@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ORL-AI Structural Lab v5.0.0</title>
+<style>
+:root{--ink:#172033;--muted:#5d6678;--line:#d9deea;--panel:#ffffff;--soft:#f4f6fb;--accent:#3657a7;--good:#1f7a4d;--warn:#9a5b00;--deny:#9b2c2c;--shadow:0 12px 32px rgba(22,32,51,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:#eef1f7;color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line);padding:24px 28px}
+header h1{margin:0 0 6px;font-size:28px}
+header p{margin:0;color:var(--muted);max-width:950px;line-height:1.5}
+main{padding:24px;max-width:1500px;margin:0 auto}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:9px;padding:10px 14px;font-weight:650;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:minmax(420px,1.05fr) minmax(420px,.95fr);gap:18px;align-items:start}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.panel h2{font-size:16px;margin:0;padding:14px 16px;border-bottom:1px solid var(--line);background:var(--soft)}
+textarea{display:block;width:100%;min-height:670px;border:0;resize:vertical;padding:16px;font:13px/1.5 Consolas,Monaco,monospace;color:#1c2536;outline:none}
+.result{padding:18px}
+.state{font-size:30px;font-weight:800;margin-bottom:4px}
+.reason{color:var(--muted);margin-bottom:18px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.card{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px}
+.card span{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}
+.card strong{font-size:14px;word-break:break-word}
+.section{margin-top:16px}
+.section h3{font-size:14px;margin:0 0 8px}
+ul{padding-left:20px;margin:0;color:#343d50;line-height:1.55}
+pre{background:#101827;color:#e7edf9;border-radius:10px;padding:14px;overflow:auto;max-height:360px;font:12px/1.45 Consolas,Monaco,monospace;white-space:pre-wrap;word-break:break-word}
+.note{margin-top:16px;color:var(--muted);font-size:13px;line-height:1.5}
+@media(max-width:980px){.grid{grid-template-columns:1fr}textarea{min-height:480px}}
+</style>
+</head>
+<body>
+<header>
+<h1>ORL-AI Structural Lab</h1>
+<p>Local deterministic decision admission from declared structure. Model outputs are proposals, not authority. The lab does not call a model, server, or network service.</p>
+</header>
+<main>
+<div class="toolbar" id="cases"></div>
+<div class="toolbar">
+<button class="primary" id="resolve">Resolve Structure</button>
+<button id="format">Format JSON</button>
+</div>
+<div class="grid">
+<section class="panel">
+<h2>Input Structure</h2>
+<textarea id="input" spellcheck="false"></textarea>
+</section>
+<section class="panel">
+<h2>Bounded Result</h2>
+<div class="result">
+<div class="state" id="state">-</div>
+<div class="reason" id="reason">Select a case or resolve the current input.</div>
+<div class="cards">
+<div class="card"><span>Candidate</span><strong id="candidate">-</strong></div>
+<div class="card"><span>Authority</span><strong id="authority">NONE</strong></div>
+<div class="card"><span>Decision identity</span><strong id="decisionId">-</strong></div>
+<div class="card"><span>Boundary</span><strong id="boundary">-</strong></div>
+<div class="card"><span>Hash backend</span><strong id="hashBackend">-</strong></div>
+</div>
+<div class="section"><h3>Blockers</h3><ul id="blockers"><li>None</li></ul></div>
+<div class="section"><h3>Repair requirements</h3><ul id="repairs"><li>None</li></ul></div>
+<div class="section"><h3>Minimal witness</h3><ul id="witness"><li>None</li></ul></div>
+<div class="section"><h3>Canonical bundle</h3><pre id="raw">-</pre></div>
+<div class="note">A resolved state means only that one candidate satisfied the frozen ORL-AI profile within the declared boundary. It does not establish truth, safety, legality, authorization, or execution authority.</div>
+</div>
+</section>
+</div>
+</main>
+<script src="ORL_AI_Strict_Json_v5_0_0.js"></script>
+<script src="ORL_AI_Browser_Resolver_v5_0_0.js"></script>
+<script>
+const CASES={"Resolved":{"boundary":{"expected_evidence_ids":["e-format","e-policy","e-review"],"expected_observation_ids":["obs-model","obs-review","obs-rule"]},"constraints":[],"context":{"authority_mode":"NONE","boundary_state":"SEALED","candidate_ids":["QUEUE_ALPHA","QUEUE_BETA"],"context_id":"resolved-consensus","domain":"synthetic-routing","evidence_mode":"DECLARED","profile_id":"ORL-AI-STRICT-3CLASS-5-D01","question_id":"route-synthetic-record","ruleset_id":"ORL-AI-ADMISSION-RULESET-5-D01","text_profile_id":"ORL-AI-UNICODE-SCALAR-EXACT-5-D01"},"evidence":[{"digest":"sha256:15b73c2a4d2438f44afc70ce695e6253feef81f7e004c01468fbf423767abd36","evidence_id":"e-format","kind":"DECLARED_FACT"},{"digest":"sha256:ae1b2429c2ef9a6c2a119bb3c231a0fec5787b5ec4ca77cf42d40bf3c112542c","evidence_id":"e-policy","kind":"RULE_RESULT"},{"digest":"sha256:2585ec4023196c22af84050ae7bbafd8ec50237d982aec9e9fc08e506be7b2e8","evidence_id":"e-review","kind":"REVIEW_RESULT"}],"observations":[{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-format"],"observation_id":"obs-model","source_id":"model-primary","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-review"],"observation_id":"obs-review","source_id":"model-review","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-policy"],"observation_id":"obs-rule","source_id":"rule-checker","stance":"SUPPORT"}],"schema":"ORL-AI-INPUT-5.0.0","sources":[{"source_class":"MODEL","source_family":"family-alpha","source_id":"model-primary"},{"source_class":"MODEL_REVIEW","source_family":"family-beta","source_id":"model-review"},{"source_class":"RULE_CHECK","source_family":"family-gamma","source_id":"rule-checker"}]},"Incomplete":{"boundary":{"expected_evidence_ids":["e-format","e-policy","e-review"],"expected_observation_ids":["obs-model","obs-review","obs-rule"]},"constraints":[],"context":{"authority_mode":"NONE","boundary_state":"OPEN","candidate_ids":["QUEUE_ALPHA","QUEUE_BETA"],"context_id":"incomplete-open-boundary","domain":"synthetic-routing","evidence_mode":"DECLARED","profile_id":"ORL-AI-STRICT-3CLASS-5-D01","question_id":"route-synthetic-record","ruleset_id":"ORL-AI-ADMISSION-RULESET-5-D01","text_profile_id":"ORL-AI-UNICODE-SCALAR-EXACT-5-D01"},"evidence":[{"digest":"sha256:7755da1484b7d2948889ec73f75e0293a0f79f8069b2a42190218b13ff4e7039","evidence_id":"e-format","kind":"DECLARED_FACT"},{"digest":"sha256:43c962c2d37cc4fc20d8c528999cca9176df0adea3b04f6204743ec1f3499b44","evidence_id":"e-policy","kind":"RULE_RESULT"},{"digest":"sha256:564003f5a4977b0d670ee0cd4c1979c1adf8d26599e5527f1bbe3a86c3da3890","evidence_id":"e-review","kind":"REVIEW_RESULT"}],"observations":[{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-format"],"observation_id":"obs-model","source_id":"model-primary","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-review"],"observation_id":"obs-review","source_id":"model-review","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-policy"],"observation_id":"obs-rule","source_id":"rule-checker","stance":"SUPPORT"}],"schema":"ORL-AI-INPUT-5.0.0","sources":[{"source_class":"MODEL","source_family":"family-alpha","source_id":"model-primary"},{"source_class":"MODEL_REVIEW","source_family":"family-beta","source_id":"model-review"},{"source_class":"RULE_CHECK","source_family":"family-gamma","source_id":"rule-checker"}]},"Abstain":{"boundary":{"expected_evidence_ids":["e-format","e-policy","e-review"],"expected_observation_ids":["obs-model","obs-review","obs-rule","obs-opposition"]},"constraints":[],"context":{"authority_mode":"NONE","boundary_state":"SEALED","candidate_ids":["QUEUE_ALPHA","QUEUE_BETA"],"context_id":"abstain-opposition","domain":"synthetic-routing","evidence_mode":"DECLARED","profile_id":"ORL-AI-STRICT-3CLASS-5-D01","question_id":"route-synthetic-record","ruleset_id":"ORL-AI-ADMISSION-RULESET-5-D01","text_profile_id":"ORL-AI-UNICODE-SCALAR-EXACT-5-D01"},"evidence":[{"digest":"sha256:3f7e39a382c300fd76d44efb759ab07fc8b91c7ace2bc7c10ef4ac42f5eaff89","evidence_id":"e-format","kind":"DECLARED_FACT"},{"digest":"sha256:6075d70d24b401faa843efe6d29e6be9d15f2f71c39594a559e254798099ae1e","evidence_id":"e-policy","kind":"RULE_RESULT"},{"digest":"sha256:00f36a301344e8ddf39052fd01173edfbd07d00b0adb476d67ba7e389ca679e6","evidence_id":"e-review","kind":"REVIEW_RESULT"}],"observations":[{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-format"],"observation_id":"obs-model","source_id":"model-primary","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-review"],"observation_id":"obs-review","source_id":"model-review","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-policy"],"observation_id":"obs-rule","source_id":"rule-checker","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-review"],"observation_id":"obs-opposition","source_id":"human-review","stance":"OPPOSE"}],"schema":"ORL-AI-INPUT-5.0.0","sources":[{"source_class":"MODEL","source_family":"family-alpha","source_id":"model-primary"},{"source_class":"MODEL_REVIEW","source_family":"family-beta","source_id":"model-review"},{"source_class":"RULE_CHECK","source_family":"family-gamma","source_id":"rule-checker"},{"source_class":"HUMAN_REVIEW","source_family":"family-delta","source_id":"human-review"}]},"Denied":{"boundary":{"expected_evidence_ids":["e-format","e-policy","e-review"],"expected_observation_ids":["obs-model","obs-review","obs-rule"]},"constraints":[{"active":true,"candidate_id":"QUEUE_ALPHA","constraint_id":"deny-alpha","kind":"FORBID_CANDIDATE"}],"context":{"authority_mode":"NONE","boundary_state":"SEALED","candidate_ids":["QUEUE_ALPHA","QUEUE_BETA"],"context_id":"denied-forbidden-candidate","domain":"synthetic-routing","evidence_mode":"DECLARED","profile_id":"ORL-AI-STRICT-3CLASS-5-D01","question_id":"route-synthetic-record","ruleset_id":"ORL-AI-ADMISSION-RULESET-5-D01","text_profile_id":"ORL-AI-UNICODE-SCALAR-EXACT-5-D01"},"evidence":[{"digest":"sha256:ff9c6f7a6da0b0560fc85f06c0b09fe69856dc9cbfab815830cf3007632765a6","evidence_id":"e-format","kind":"DECLARED_FACT"},{"digest":"sha256:bafcf86d72390f38d6383bce684b3f18d5c0fe07cdd88feae5cf2070d5d829a3","evidence_id":"e-policy","kind":"RULE_RESULT"},{"digest":"sha256:64cb55eda8687583f9c1b82f83691d52a1fe5fe6a9e4832a3f17448d09b25764","evidence_id":"e-review","kind":"REVIEW_RESULT"}],"observations":[{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-format"],"observation_id":"obs-model","source_id":"model-primary","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-review"],"observation_id":"obs-review","source_id":"model-review","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-policy"],"observation_id":"obs-rule","source_id":"rule-checker","stance":"SUPPORT"}],"schema":"ORL-AI-INPUT-5.0.0","sources":[{"source_class":"MODEL","source_family":"family-alpha","source_id":"model-primary"},{"source_class":"MODEL_REVIEW","source_family":"family-beta","source_id":"model-review"},{"source_class":"RULE_CHECK","source_family":"family-gamma","source_id":"rule-checker"}]},"Refused":{"boundary":{"expected_evidence_ids":["e-format","e-policy","e-review"],"expected_observation_ids":["obs-model","obs-review","obs-rule"]},"constraints":[],"context":{"authority_mode":"CALLER","boundary_state":"SEALED","candidate_ids":["QUEUE_ALPHA","QUEUE_BETA"],"context_id":"refused-caller-authority","domain":"synthetic-routing","evidence_mode":"DECLARED","profile_id":"ORL-AI-STRICT-3CLASS-5-D01","question_id":"route-synthetic-record","ruleset_id":"ORL-AI-ADMISSION-RULESET-5-D01","text_profile_id":"ORL-AI-UNICODE-SCALAR-EXACT-5-D01"},"evidence":[{"digest":"sha256:acd74e1a50b709adc4982722619bce7180b29bf269da36316540907ae9361f3e","evidence_id":"e-format","kind":"DECLARED_FACT"},{"digest":"sha256:4aeedd4f5d7b1cfcdee3227f211014dc41910f08760b8226b934c89b4ac57a10","evidence_id":"e-policy","kind":"RULE_RESULT"},{"digest":"sha256:92ac62209e506008d842e28bc6137c053059f9856b21ff1fd498ef472e233747","evidence_id":"e-review","kind":"REVIEW_RESULT"}],"observations":[{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-format"],"observation_id":"obs-model","source_id":"model-primary","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-review"],"observation_id":"obs-review","source_id":"model-review","stance":"SUPPORT"},{"candidate_id":"QUEUE_ALPHA","evidence_ids":["e-policy"],"observation_id":"obs-rule","source_id":"rule-checker","stance":"SUPPORT"}],"schema":"ORL-AI-INPUT-5.0.0","sources":[{"source_class":"MODEL","source_family":"family-alpha","source_id":"model-primary"},{"source_class":"MODEL_REVIEW","source_family":"family-beta","source_id":"model-review"},{"source_class":"RULE_CHECK","source_family":"family-gamma","source_id":"rule-checker"}]}};
+const input=document.getElementById('input');
+const list=(id,values)=>{const node=document.getElementById(id);node.innerHTML='';const items=values&&values.length?values:['None'];for(const value of items){const li=document.createElement('li');li.textContent=value;node.appendChild(li)}};
+function loadCase(name){input.value=JSON.stringify(CASES[name],null,2);resolveCurrent()}
+for(const name of Object.keys(CASES)){const button=document.createElement('button');button.textContent=name;button.addEventListener('click',()=>loadCase(name));document.getElementById('cases').appendChild(button)}
+async function resolveCurrent(){
+  try{
+    const documentValue=ORL_AI_STRICT_JSON.strictJsonParse(input.value);
+    const result=await ORL_AI.resolveDocument(documentValue);
+    const bundle=result.bundle;
+    document.getElementById('state').textContent=bundle.resolution.state;
+    document.getElementById('reason').textContent=bundle.resolution.reason_code;
+    document.getElementById('candidate').textContent=bundle.resolution.candidate_id||'None';
+    document.getElementById('authority').textContent=bundle.resolution.authority;
+    document.getElementById('decisionId').textContent=bundle.identities.decision_resolution_id;
+    document.getElementById('boundary').textContent=bundle.boundary_state||'None';
+    document.getElementById('hashBackend').textContent=ORL_AI.hashBackendName();
+    list('blockers',bundle.resolution.blockers);
+    list('repairs',bundle.resolution.repair_requirements);
+    list('witness',bundle.resolution.witness_observation_ids);
+    document.getElementById('raw').textContent=ORL_AI.canonicalText(bundle);
+  }catch(error){
+    const code=error&&error.code?error.code:String(error.message||error);
+    const parserRefusal=error&&error.name==='ParserRefusal';
+    const category=parserRefusal?'PARSER REFUSAL':'RUNTIME ERROR';
+    document.getElementById('state').textContent=category;
+    document.getElementById('reason').textContent=code;
+    document.getElementById('candidate').textContent='None';
+    document.getElementById('authority').textContent='NONE';
+    document.getElementById('decisionId').textContent='None';
+    document.getElementById('boundary').textContent='None';
+    document.getElementById('hashBackend').textContent=typeof ORL_AI!=='undefined'?ORL_AI.hashBackendName():'Unavailable';
+    list('blockers',[code]);
+    list('repairs',[]);
+    list('witness',[]);
+    document.getElementById('raw').textContent=category+': '+code;
+  }
+}
+document.getElementById('resolve').addEventListener('click',resolveCurrent);
+document.getElementById('format').addEventListener('click',()=>{try{input.value=JSON.stringify(ORL_AI_STRICT_JSON.strictJsonParse(input.value),null,2)}catch(error){alert(error&&error.code?error.code:String(error.message||error))}});
+loadCase('Resolved');
+</script>
+</body>
+</html>

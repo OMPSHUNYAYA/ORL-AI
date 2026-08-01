@@ -1,0 +1,20 @@
+PASS  refuse hostile/raw/duplicate-json-key.json -> DUPLICATE_JSON_KEY
+PASS  refuse hostile/raw/floating-json-number.json -> FLOATING_JSON_NUMBER
+PASS  refuse hostile/raw/integer-above-exact-range.json -> INTEGER_OUTSIDE_EXACT_RANGE
+PASS  refuse hostile/raw/trailing-content.json -> MALFORMED_JSON
+PASS  refuse hostile/raw/utf8-bom.json -> UTF8_BOM
+PASS  refuse hostile/raw/nonfinite-number.json -> NONFINITE_JSON_NUMBER
+PASS  refuse hostile/raw/duplicate-nested-stance.json -> DUPLICATE_JSON_KEY
+PASS  refuse hostile/raw/unpaired-surrogate.json -> MALFORMED_JSON
+PASS  refuse hostile/raw/invalid-utf8.json -> INVALID_UTF8
+PASS  refuse hostile/raw/duplicate-escaped-key.json -> DUPLICATE_JSON_KEY
+PASS  all shipped well-formed JSON parses identically to JSON.parse
+PASS  bare duplicate at top level
+PASS  exponent float
+PASS  negative infinity
+PASS  leading zero
+PASS  max exact integer accepted
+PASS  one past max refused
+PASS  valid surrogate pair accepted
+PASS  unpaired surrogate refused
+TOTAL 19/19 PASS

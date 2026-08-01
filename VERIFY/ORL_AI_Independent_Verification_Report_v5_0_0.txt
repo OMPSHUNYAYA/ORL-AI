@@ -1,0 +1,11 @@
+PASS  resolved-consensus
+PASS  resolved-permuted-order
+PASS  incomplete-open-boundary
+PASS  incomplete-missing-observation
+PASS  incomplete-correlated-sources
+PASS  abstain-competing-partial
+PASS  abstain-opposition
+PASS  denied-forbidden-candidate
+PASS  resolved-relay-multiplicity
+PASS  refused-caller-authority
+INDEPENDENT CORPUS VERIFY: PASS

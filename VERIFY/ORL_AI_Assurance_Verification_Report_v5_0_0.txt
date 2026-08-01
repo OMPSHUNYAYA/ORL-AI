@@ -1,0 +1,13 @@
+ORL-AI v5.0.0 Assurance Verification
+
+PASS  independent_corpus
+PASS  hostile_corpus
+PASS  falsification_corpus
+PASS  public_receipt_boundary
+PASS  identity_separation
+PASS  resource_and_text_controls
+PASS  bounded_witness_construction
+
+Hostile cases: 20/20
+Falsification cases: 11/11
+Overall: PASS

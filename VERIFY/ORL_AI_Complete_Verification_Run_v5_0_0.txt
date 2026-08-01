@@ -1,0 +1,191 @@
+PASS  resolved state
+PASS  resolved candidate
+PASS  minimal witness
+PASS  authority none
+PASS  receipt binding
+PASS  artifact profile declared
+PASS  static verification status absent
+PASS  artifact profile identity binding
+PASS  artifact profile tamper detected
+PASS  order-independent resolution identity
+PASS  normalized structure equality
+PASS  open boundary incomplete
+PASS  minority support abstain
+PASS  support oppose conflict
+PASS  active prohibition denied
+PASS  correlated sources incomplete
+PASS  caller authority refused
+PASS  relay multiplicity does not raise source count
+PASS  relay-heavy bounded witness
+PASS  duplicate key parser refusal
+PASS  float parser refusal
+PASS  non-finite parser refusal
+PASS  large integer parser refusal
+PASS  trailing content parser refusal
+PASS  bom parser refusal
+PASS  unpaired surrogate parser refusal
+TOTAL 26/26 PASS
+PASS  resolved-consensus
+PASS  resolved-permuted-order
+PASS  incomplete-open-boundary
+PASS  incomplete-missing-observation
+PASS  incomplete-correlated-sources
+PASS  abstain-competing-partial
+PASS  abstain-opposition
+PASS  denied-forbidden-candidate
+PASS  resolved-relay-multiplicity
+PASS  refused-caller-authority
+TOTAL 10/10 PASS
+PASS  resolved-consensus
+PASS  resolved-permuted-order
+PASS  incomplete-open-boundary
+PASS  incomplete-missing-observation
+PASS  incomplete-correlated-sources
+PASS  abstain-competing-partial
+PASS  abstain-opposition
+PASS  denied-forbidden-candidate
+PASS  resolved-relay-multiplicity
+PASS  refused-caller-authority
+INDEPENDENT CORPUS VERIFY: PASS
+PARITY VECTOR VERIFY: PASS
+PASS  refuse hostile/raw/duplicate-json-key.json -> DUPLICATE_JSON_KEY
+PASS  refuse hostile/raw/floating-json-number.json -> FLOATING_JSON_NUMBER
+PASS  refuse hostile/raw/integer-above-exact-range.json -> INTEGER_OUTSIDE_EXACT_RANGE
+PASS  refuse hostile/raw/trailing-content.json -> MALFORMED_JSON
+PASS  refuse hostile/raw/utf8-bom.json -> UTF8_BOM
+PASS  refuse hostile/raw/nonfinite-number.json -> NONFINITE_JSON_NUMBER
+PASS  refuse hostile/raw/duplicate-nested-stance.json -> DUPLICATE_JSON_KEY
+PASS  refuse hostile/raw/unpaired-surrogate.json -> MALFORMED_JSON
+PASS  refuse hostile/raw/invalid-utf8.json -> INVALID_UTF8
+PASS  refuse hostile/raw/duplicate-escaped-key.json -> DUPLICATE_JSON_KEY
+PASS  all shipped well-formed JSON parses identically to JSON.parse
+PASS  bare duplicate at top level
+PASS  exponent float
+PASS  negative infinity
+PASS  leading zero
+PASS  max exact integer accepted
+PASS  one past max refused
+PASS  valid surrogate pair accepted
+PASS  unpaired surrogate refused
+TOTAL 19/19 PASS
+PASS  resolved-consensus
+PASS  resolved-permuted-order
+PASS  incomplete-open-boundary
+PASS  incomplete-missing-observation
+PASS  incomplete-correlated-sources
+PASS  abstain-competing-partial
+PASS  abstain-opposition
+PASS  denied-forbidden-candidate
+PASS  resolved-relay-multiplicity
+PASS  refused-caller-authority
+TOTAL 10/10 PASS
+PASS  empty vector
+PASS  abc vector
+PASS  long vector
+PASS  padding-boundary lengths
+PASS  Unicode bytes
+PASS  deterministic fuzz corpus 500/500
+PASS  forced pure path equals native path
+PASS  origin-independent backend selection
+PASS  isolated fallback parity resolved-consensus
+PASS  isolated fallback parity resolved-permuted-order
+PASS  isolated fallback parity incomplete-open-boundary
+PASS  isolated fallback parity incomplete-missing-observation
+PASS  isolated fallback parity incomplete-correlated-sources
+PASS  isolated fallback parity abstain-competing-partial
+PASS  isolated fallback parity abstain-opposition
+PASS  isolated fallback parity denied-forbidden-candidate
+PASS  isolated fallback parity resolved-relay-multiplicity
+PASS  isolated fallback parity refused-caller-authority
+TOTAL 18/18 PASS
+SHA-256 FALLBACK VERIFY: PASS
+PASS  duplicate-json-key
+PASS  floating-json-number
+PASS  integer-above-exact-range
+PASS  trailing-content
+PASS  utf8-bom
+PASS  nonfinite-number
+PASS  duplicate-nested-stance
+PASS  unpaired-surrogate
+PASS  invalid-utf8
+PASS  duplicate-escaped-key
+PASS  well-formed-control
+TOTAL 11/11 PASS
+RAW-INTAKE PARITY: PASS
+PASS  resolved-consensus
+PASS  resolved-permuted-order
+PASS  incomplete-open-boundary
+PASS  incomplete-missing-observation
+PASS  incomplete-correlated-sources
+PASS  abstain-competing-partial
+PASS  abstain-opposition
+PASS  denied-forbidden-candidate
+PASS  resolved-relay-multiplicity
+PASS  refused-caller-authority
+CROSS-IMPLEMENTATION VERIFY: PASS
+PASS  mixed-case identifier ordering  [RESOLVED / UNIQUE_ADMISSIBLE_CANDIDATE]
+PASS  punctuation identifier ordering  [RESOLVED / UNIQUE_ADMISSIBLE_CANDIDATE]
+PASS  Unicode unsupported-key ordering  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  prototype-like key retention  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  source resource limit  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  carriage-return text refusal  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  maximum exact integer  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  depth resource limit  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+TOTAL 8/8 PASS
+CROSS-LANGUAGE EDGE PARITY: PASS
+PASS  abstain-competing-partial
+PASS  abstain-opposition
+PASS  denied-forbidden-candidate
+PASS  incomplete-correlated-sources
+PASS  incomplete-missing-observation
+PASS  incomplete-open-boundary
+PASS  refused-caller-authority
+PASS  resolved-consensus
+PASS  resolved-permuted-order
+PASS  resolved-relay-multiplicity
+TOTAL 10/10 PASS
+DETERMINISM VERIFY: PASS
+PASS  family-collapse 8/8
+PASS  minority-support 8/8
+PASS  missing-boundary-item 8/8
+PASS  opposition-block 8/8
+PASS  permutation-invariance 8/8
+PASS  prohibition-precedence 8/8
+PASS  relay-multiplicity 8/8
+PASS  unsupported-field-refusal 8/8
+TOTAL 64/64 PASS
+PASS  capsule verifies
+PASS  capsule reconstructs
+PASS  identical relation
+PASS  different contexts are incomparable
+PASS  same-context state divergence
+PASS  tamper detected
+TOTAL 6/6 PASS
+PASS  anchor_resolved  [RESOLVED / UNIQUE_ADMISSIBLE_CANDIDATE]
+PASS  anchor_incomplete_open  [INCOMPLETE / BOUNDARY_INCOMPLETE]
+PASS  anchor_denied  [DENIED / ACTIVE_PROHIBITION]
+PASS  anchor_refused  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  refused_over_denied  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  denied_over_source_conflict  [DENIED / ACTIVE_PROHIBITION]
+PASS  denied_over_incomplete  [DENIED / ACTIVE_PROHIBITION]
+PASS  denied_over_resolved  [DENIED / ACTIVE_PROHIBITION]
+PASS  source_conflict_over_multiple_eligible  [ABSTAIN / SOURCE_CONFLICT]
+PASS  source_conflict_over_incomplete  [ABSTAIN / SOURCE_CONFLICT]
+PASS  multiple_eligible_over_disagreement  [ABSTAIN / MULTIPLE_ELIGIBLE_CANDIDATES]
+PASS  multiple_eligible_over_incomplete  [ABSTAIN / MULTIPLE_ELIGIBLE_CANDIDATES]
+PASS  blocking_disagreement_over_incomplete  [ABSTAIN / BLOCKING_DISAGREEMENT]
+PASS  competing_partial_over_incomplete  [ABSTAIN / COMPETING_PARTIAL_SUPPORT]
+PASS  incomplete_over_resolved  [INCOMPLETE / BOUNDARY_INCOMPLETE]
+TOTAL 15/15 PASS
+STATE-PRECEDENCE VERIFY: PASS
+PASS  independent_corpus
+PASS  hostile_corpus
+PASS  falsification_corpus
+PASS  public_receipt_boundary
+PASS  identity_separation
+PASS  resource_and_text_controls
+PASS  bounded_witness_construction
+HOSTILE 20/20
+FALSIFICATION 11/11
+ASSURANCE VERIFY: PASS
+ORL-AI v5.0.0 functional verification: PASS

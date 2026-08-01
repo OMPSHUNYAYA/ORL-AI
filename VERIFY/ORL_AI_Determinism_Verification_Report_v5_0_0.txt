@@ -1,0 +1,12 @@
+PASS  abstain-competing-partial
+PASS  abstain-opposition
+PASS  denied-forbidden-candidate
+PASS  incomplete-correlated-sources
+PASS  incomplete-missing-observation
+PASS  incomplete-open-boundary
+PASS  refused-caller-authority
+PASS  resolved-consensus
+PASS  resolved-permuted-order
+PASS  resolved-relay-multiplicity
+TOTAL 10/10 PASS
+DETERMINISM VERIFY: PASS

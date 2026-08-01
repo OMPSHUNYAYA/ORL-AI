@@ -1,0 +1,7 @@
+PASS  capsule verifies
+PASS  capsule reconstructs
+PASS  identical relation
+PASS  different contexts are incomparable
+PASS  same-context state divergence
+PASS  tamper detected
+TOTAL 6/6 PASS

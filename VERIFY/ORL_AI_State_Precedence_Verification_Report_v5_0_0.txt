@@ -1,0 +1,17 @@
+PASS  anchor_resolved  [RESOLVED / UNIQUE_ADMISSIBLE_CANDIDATE]
+PASS  anchor_incomplete_open  [INCOMPLETE / BOUNDARY_INCOMPLETE]
+PASS  anchor_denied  [DENIED / ACTIVE_PROHIBITION]
+PASS  anchor_refused  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  refused_over_denied  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  denied_over_source_conflict  [DENIED / ACTIVE_PROHIBITION]
+PASS  denied_over_incomplete  [DENIED / ACTIVE_PROHIBITION]
+PASS  denied_over_resolved  [DENIED / ACTIVE_PROHIBITION]
+PASS  source_conflict_over_multiple_eligible  [ABSTAIN / SOURCE_CONFLICT]
+PASS  source_conflict_over_incomplete  [ABSTAIN / SOURCE_CONFLICT]
+PASS  multiple_eligible_over_disagreement  [ABSTAIN / MULTIPLE_ELIGIBLE_CANDIDATES]
+PASS  multiple_eligible_over_incomplete  [ABSTAIN / MULTIPLE_ELIGIBLE_CANDIDATES]
+PASS  blocking_disagreement_over_incomplete  [ABSTAIN / BLOCKING_DISAGREEMENT]
+PASS  competing_partial_over_incomplete  [ABSTAIN / COMPETING_PARTIAL_SUPPORT]
+PASS  incomplete_over_resolved  [INCOMPLETE / BOUNDARY_INCOMPLETE]
+TOTAL 15/15 PASS
+STATE-PRECEDENCE VERIFY: PASS

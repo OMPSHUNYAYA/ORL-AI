@@ -1,0 +1,20 @@
+PASS  empty vector
+PASS  abc vector
+PASS  long vector
+PASS  padding-boundary lengths
+PASS  Unicode bytes
+PASS  deterministic fuzz corpus 500/500
+PASS  forced pure path equals native path
+PASS  origin-independent backend selection
+PASS  isolated fallback parity resolved-consensus
+PASS  isolated fallback parity resolved-permuted-order
+PASS  isolated fallback parity incomplete-open-boundary
+PASS  isolated fallback parity incomplete-missing-observation
+PASS  isolated fallback parity incomplete-correlated-sources
+PASS  isolated fallback parity abstain-competing-partial
+PASS  isolated fallback parity abstain-opposition
+PASS  isolated fallback parity denied-forbidden-candidate
+PASS  isolated fallback parity resolved-relay-multiplicity
+PASS  isolated fallback parity refused-caller-authority
+TOTAL 18/18 PASS
+SHA-256 FALLBACK VERIFY: PASS

@@ -1,0 +1,27 @@
+ORL-AI v5.0.0 Complete Functional Verification Summary
+
+Reference kernel: PASS 26/26
+Independent corpus reconstruction: PASS 10/10
+Strict JavaScript parser: PASS 19/19
+JavaScript frozen parity: PASS 10/10
+Origin-independent SHA-256 fallback: PASS 18/18
+Raw-intake parity: PASS 11/11
+Live example cross-check: PASS 10/10
+Cross-language edge parity: PASS 8/8
+Regeneration parity and idempotence: PASS 10/10
+Seeded properties: PASS 64/64
+Decision-Admission Capsule: PASS 6/6
+State precedence: PASS 15/15
+Hostile corpus: PASS 20/20
+Falsification corpus: PASS 11/11
+Bounded witness construction: PASS
+Artifact-profile identity binding: PASS
+Artifact-profile tamper detection: PASS
+Direct bundle-tamper rejection: PASS
+Public-receipt boundary: PASS
+Identity separation: PASS
+Resource and text-profile controls: PASS
+
+Overall: ORL-AI v5.0.0 functional verification: PASS
+
+These results apply only to the declared package boundary and do not constitute third-party certification, formal verification, domain validation, authorization, or execution authority.

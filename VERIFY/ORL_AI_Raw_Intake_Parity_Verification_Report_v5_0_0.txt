@@ -1,0 +1,13 @@
+PASS  duplicate-json-key
+PASS  floating-json-number
+PASS  integer-above-exact-range
+PASS  trailing-content
+PASS  utf8-bom
+PASS  nonfinite-number
+PASS  duplicate-nested-stance
+PASS  unpaired-surrogate
+PASS  invalid-utf8
+PASS  duplicate-escaped-key
+PASS  well-formed-control
+TOTAL 11/11 PASS
+RAW-INTAKE PARITY: PASS

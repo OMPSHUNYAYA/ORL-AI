@@ -1,0 +1,27 @@
+PASS  resolved state
+PASS  resolved candidate
+PASS  minimal witness
+PASS  authority none
+PASS  receipt binding
+PASS  artifact profile declared
+PASS  static verification status absent
+PASS  artifact profile identity binding
+PASS  artifact profile tamper detected
+PASS  order-independent resolution identity
+PASS  normalized structure equality
+PASS  open boundary incomplete
+PASS  minority support abstain
+PASS  support oppose conflict
+PASS  active prohibition denied
+PASS  correlated sources incomplete
+PASS  caller authority refused
+PASS  relay multiplicity does not raise source count
+PASS  relay-heavy bounded witness
+PASS  duplicate key parser refusal
+PASS  float parser refusal
+PASS  non-finite parser refusal
+PASS  large integer parser refusal
+PASS  trailing content parser refusal
+PASS  bom parser refusal
+PASS  unpaired surrogate parser refusal
+TOTAL 26/26 PASS

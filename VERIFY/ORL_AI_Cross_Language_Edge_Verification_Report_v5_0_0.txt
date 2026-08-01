@@ -1,0 +1,10 @@
+PASS  mixed-case identifier ordering  [RESOLVED / UNIQUE_ADMISSIBLE_CANDIDATE]
+PASS  punctuation identifier ordering  [RESOLVED / UNIQUE_ADMISSIBLE_CANDIDATE]
+PASS  Unicode unsupported-key ordering  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  prototype-like key retention  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  source resource limit  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  carriage-return text refusal  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  maximum exact integer  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+PASS  depth resource limit  [REFUSED / STRUCTURAL_INTAKE_REFUSAL]
+TOTAL 8/8 PASS
+CROSS-LANGUAGE EDGE PARITY: PASS

@@ -1,0 +1,9 @@
+PASS  family-collapse 8/8
+PASS  minority-support 8/8
+PASS  missing-boundary-item 8/8
+PASS  opposition-block 8/8
+PASS  permutation-invariance 8/8
+PASS  prohibition-precedence 8/8
+PASS  relay-multiplicity 8/8
+PASS  unsupported-field-refusal 8/8
+TOTAL 64/64 PASS
